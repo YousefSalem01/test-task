@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import Card from "../uikit/Card/Card";
+import Card from "../../uikit/Card/Card";
 
 function FeatureCard({ feature, index }) {
 	const [isHovered, setIsHovered] = useState(false);

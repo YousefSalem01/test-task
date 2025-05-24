@@ -1,13 +1,13 @@
-import { Navbar } from "./components/Navbar";
-import { HowItWorks } from "./components/HowItWorks";
-import { HeroSection } from "./components/HeroSection";
-import { FeaturesSection } from "./components/FeaturesSection";
-import { ChannelsSection } from "./components/ChannelsSection";
-import { CTASection } from "./components/CtaSection";
-import { Footer } from "./components/Footer";
-import { ChatWidget } from "./components/ChatWidget";
-import { PlatformShowcase } from "./components/PlatformShowcase";
-import { TestimonialsSection } from "./components/TestimonialsSection";
+import { Navbar } from "./components/Navbar/Navbar";
+import { HowItWorks } from "./components/HowItWorks/HowItWorks";
+import { HeroSection } from "./components/HeroSection/HeroSection";
+import { FeaturesSection } from "./components/FeaturesSection/FeaturesSection";
+import { ChannelsSection } from "./components/ChannelsSection/ChannelsSection";
+import { CTASection } from "./components/CtaSection/CtaSection";
+import { Footer } from "./components/Footer/Footer";
+import { ChatWidget } from "./components/ChatWidget/ChatWidget";
+import { PlatformShowcase } from "./components/PlatformShowcase/PlatformShowcase";
+import { TestimonialsSection } from "./components/TestimonialsSection/TestimonialsSection";
 import AppRoutes from "./routes/AppRoutes";
 
 export function HomePage() {

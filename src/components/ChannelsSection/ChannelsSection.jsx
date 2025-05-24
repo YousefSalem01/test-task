@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import ChannelOrbit from "../uikit/ChannelOrbit";
 import { Mail, Globe, Instagram, Facebook, Phone, MessageSquare } from "lucide-react";
 import { FaWhatsapp, FaTiktok } from "react-icons/fa";
+import {ChannelOrbit} from "../../uikit/ChannelOrbit/ChannelOrbit";
 
 // Define the channels for the right side info panel, matching the icons from defaultChannels
 const channels = [

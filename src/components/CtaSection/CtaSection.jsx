@@ -1,4 +1,4 @@
-import { Button } from "../uikit/Button/Button";
+import { Button } from "../../uikit/Button/Button";
 
 export function CTASection() {
 	return (

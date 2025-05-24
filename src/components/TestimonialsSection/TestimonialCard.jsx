@@ -1,5 +1,5 @@
 import React from "react";
-import Card from "../uikit/Card/Card";
+import Card from "../../uikit/Card/Card";
 
 function TestimonialCard({ testimonial, index }) {
 	return (

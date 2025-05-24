@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Send, X, MoreVertical, PlusCircle, LogOut, History } from "lucide-react";
-import { Button } from "../uikit/Button/Button";
+import { Button } from "../../uikit/Button/Button";
 
 const initialMessages = [
 	{

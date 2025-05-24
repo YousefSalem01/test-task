@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, ChevronDown } from "lucide-react";
-import videoSrc from "../assets/videos/hero.webm";
+import videoSrc from "../../assets/videos/hero.webm";
 
 const steps = [
 	{

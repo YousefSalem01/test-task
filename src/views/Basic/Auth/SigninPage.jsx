@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import videoSrc from "../../../assets/videos/hero.webm";
 import logoSrc from "../../../assets/logos/armin-cx-logo-blue.0885e649.svg";
 import { FaGoogle } from "react-icons/fa";
-import { ChatWidget } from "../../../components/ChatWidget";
+import { ChatWidget } from "../../../components/ChatWidget/ChatWidget";
 
 // Custom Microsoft icon component
 const Microsoft = (props) => (

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { MessageSquare, Phone, Mail, Users } from "lucide-react";
 import { FaWhatsapp } from "react-icons/fa";
-import FeatureCard from "./FeatureCard";
+import FeatureCard from "../FetureCard/FeatureCard";
 
 const features = [
 	{

@@ -29,7 +29,7 @@ const defaultChannels = [
  * @param {ReactNode} [props.centerContent] - Custom content for the center (optional)
  * @param {boolean} [props.showBorder=true] - Whether to show the dashed border
  */
-function ChannelOrbit({
+export function ChannelOrbit({
 	channels = defaultChannels,
 	activeIndex: externalActiveIndex,
 	setActiveIndex: externalSetActiveIndex,
@@ -121,4 +121,4 @@ function ChannelOrbit({
 	);
 }
 
-export default ChannelOrbit;
+

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../uikit/Button/Button";
+import { Button } from "../../uikit/Button/Button";
 import { Link } from "react-router-dom";
 import { Menu, X } from "lucide-react";
-import arminCxLogo from "../assets/logos/armin-cx-logo-blue.0885e649.svg";
+import arminCxLogo from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
 
 export function Navbar() {
 	const [isMenuOpen, setIsMenuOpen] = useState(false);

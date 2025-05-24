@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import TestimonialCard from "../../components/TestimonialCard";
+import TestimonialCard from "../../components/TestimonialsSection/TestimonialCard";
 
 const Carousel = ({ items }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);

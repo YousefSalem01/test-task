@@ -1,8 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gamepad2, BarChart2, Activity, Database, Workflow } from "lucide-react";
-import analyticsBg from "../assets/images/mfU1wWLPqiuIzGvQIpYIatOw.avif";
-import dashboardBg from "../assets/images/5VUhwLllRxiNKV9aWLUxK7Zprgc.avif";
+import analyticsBg from "../../assets/images/mfU1wWLPqiuIzGvQIpYIatOw.avif";
+import dashboardBg from "../../assets/images/5VUhwLllRxiNKV9aWLUxK7Zprgc.avif";
 
 // Custom styles
 const customStyles = `
