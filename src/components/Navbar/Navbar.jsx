@@ -51,7 +51,7 @@ export function Navbar() {
       >
         <div className="flex items-center">
           <a href="/" className="flex items-center">
-            <img src={arminCxLogo} alt="ArminCX Logo" className="h-6 sm:h-8 w-auto" />
+            <img src={arminCxLogo || "/placeholder.svg"} alt="ArminCX Logo" className="h-6 sm:h-8 w-auto" />
           </a>
         </div>
 

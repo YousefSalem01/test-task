@@ -21,7 +21,10 @@ export function HeroSection() {
   };
 
   return (
-    <section className="relative min-h-screen overflow-hidden bg-gradient-to-r from-[#f8f9fa] to-[#e9ecef] py-16 md:py-24">
+    <section className="relative min-h-screen overflow-hidden py-16 md:py-24">
+      {/* Subtle gradient background - only in hero section */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-50/30 via-purple-50/20 to-green-50/30"></div>
+
       {/* Animated background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div
@@ -50,7 +53,7 @@ export function HeroSection() {
         />
       </div>
 
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Left side - Content */}
           <motion.div
