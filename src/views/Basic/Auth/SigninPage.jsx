@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Eye, EyeOff, Mail, Lock } from "lucide-react";
-import { Button } from "../components/ui/button";
+import { Button } from "../../../uikit/Button/Button";
 import { Link } from "react-router-dom";
-import videoSrc from "../assets/videos/hero.webm";
-import logoSrc from "../assets/logos/armin-cx-logo-blue.0885e649.svg";
+import videoSrc from "../../../assets/videos/hero.webm";
+import logoSrc from "../../../assets/logos/armin-cx-logo-blue.0885e649.svg";
 import { FaGoogle } from "react-icons/fa";
-import { ChatWidget } from "../components/Chat-widget";
+import { ChatWidget } from "../../../components/ChatWidget";
 
 // Custom Microsoft icon component
 const Microsoft = (props) => (

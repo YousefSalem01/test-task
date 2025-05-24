@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Button } from "./ui/button";
+import { Button } from "../uikit/Button/Button";
 import videoSrc from "../assets/videos/invideo-ai-720 Revolutionize Your E-Commerce Support wi 2025-05-23.mp4";
 import { useState, useRef } from "react";
 import { Play, Pause } from "lucide-react";

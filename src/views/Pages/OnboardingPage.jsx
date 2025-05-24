@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Button } from "../components/ui/button";
+import { Button } from "../../uikit/Button/Button";
 import { Check, Mail, Globe, Instagram, Facebook, Phone, MessageSquare } from "lucide-react";
 import { FaWhatsapp, FaTiktok } from "react-icons/fa";
-import logoSrc from "../assets/logos/armin-cx-logo-blue.0885e649.svg";
-import "../styles/animations.css";
+import { ChannelOrbit } from "../../uikit/ChannelOrbit";
+import logoSrc from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
+import "../../styles/animations.css";
 
 const steps = [
 	{
@@ -330,45 +331,7 @@ export function OnboardingPage() {
 
 								{step.illustration === "channels" && (
 									<div className='relative w-full h-full flex items-center justify-center'>
-										<div className='absolute w-[300px] h-[300px] rounded-full border-2 border-dashed border-gray-200 animate-spin-slow'></div>
-
-										{channels.map((channel, index) => {
-											const angle = (index * (360 / channels.length) * Math.PI) / 180;
-											const x = 150 * Math.cos(angle);
-											const y = 150 * Math.sin(angle);
-
-											return (
-												<motion.div
-													key={channel.name}
-													className='absolute w-14 h-14 rounded-full flex items-center justify-center'
-													style={{
-														x: x,
-														y: y,
-														backgroundColor: channel.color,
-														color: "white",
-													}}
-													animate={{
-														scale: activeChannelIndex === index ? 1.2 : 1,
-														boxShadow: activeChannelIndex === index ? "0 0 20px rgba(0, 0, 0, 0.2)" : "0 0 0 rgba(0, 0, 0, 0)",
-													}}
-													transition={{ type: "spring", stiffness: 300 }}
-												>
-													<div className='w-6 h-6'>{channel.icon}</div>
-												</motion.div>
-											);
-										})}
-
-										<div className='absolute w-20 h-20 rounded-full bg-[#4361EE] flex items-center justify-center text-white'>
-											<motion.div
-												animate={{ rotate: 360 }}
-												transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
-												className='w-full h-full flex items-center justify-center'
-											></motion.div>
-											<div className='absolute flex items-center justify-center'>
-												<span className='text-base font-bold text-white'>armin</span>
-												<span className='text-sm font-bold bg-gradient-to-r from-white to-[#1FB7DD] bg-clip-text text-transparent'>cx</span>
-											</div>
-										</div>
+										<ChannelOrbit activeIndex={activeChannelIndex} setActiveIndex={setActiveChannelIndex} orbitSize={300} channelSize={56} centerSize={80} />
 									</div>
 								)}
 

@@ -1,4 +1,4 @@
-import { Carousel } from "./ui/carousel";
+import Carousel from "../uikit/Carousel/Carousel";
 
 const testimonials = [
 	{

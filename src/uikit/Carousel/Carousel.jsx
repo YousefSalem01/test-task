@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import TestimonialCard from "../../components/TestimonialCard";
 
-export function Carousel({ items }) {
+const Carousel = ({ items }) => {
 	const [currentIndex, setCurrentIndex] = useState(0);
 	const [isAutoPlaying, setIsAutoPlaying] = useState(true);
 
@@ -55,25 +55,7 @@ export function Carousel({ items }) {
 			<div className='flex transition-transform duration-500 ease-in-out' style={{ transform: `translateX(-${currentIndex * (100 / items.length)}%)` }}>
 				{items.map((item, index) => (
 					<div key={index} className='min-w-full md:min-w-[50%] lg:min-w-[33.333%] px-4'>
-						<motion.div
-							className='bg-white p-6 rounded-xl shadow-sm border border-gray-100 h-full flex flex-col'
-							initial={{ opacity: 0, y: 20 }}
-							animate={{ opacity: 1, y: 0 }}
-							transition={{ duration: 0.5, delay: index * 0.1 }}
-						>
-							<div className='mb-4'>
-								<div className='flex items-center mb-3'>
-									<div className='w-12 h-12 bg-gray-100 rounded-full flex items-center justify-center text-[#4361EE] font-bold'>
-										{item.avatar || item.name.charAt(0)}
-									</div>
-									<div className='ml-3'>
-										<h4 className='font-semibold text-[#313131]'>{item.name}</h4>
-										<p className='text-sm text-[#6e7687]'>{item.company}</p>
-									</div>
-								</div>
-								<p className='text-[#6e7687] italic'>{item.testimonial}</p>
-							</div>
-						</motion.div>
+						<TestimonialCard testimonial={item} index={index} />
 					</div>
 				))}
 			</div>
@@ -94,4 +76,6 @@ export function Carousel({ items }) {
 			</div>
 		</div>
 	);
-}
+};
+
+export default Carousel;

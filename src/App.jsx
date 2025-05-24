@@ -1,18 +1,16 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Navbar } from "./components/Navbar";
-import { HeroSection } from "./components/Hero-section";
-import { HowItWorks } from "./components/How-it-works";
-import { FeaturesSection } from "./components/Features-section";
-import { ChannelsSection } from "./components/Channels-section";
-import { CTASection } from "./components/Cta-section";
+import { HowItWorks } from "./components/HowItWorks";
+import { HeroSection } from "./components/HeroSection";
+import { FeaturesSection } from "./components/FeaturesSection";
+import { ChannelsSection } from "./components/ChannelsSection";
+import { CTASection } from "./components/CtaSection";
 import { Footer } from "./components/Footer";
-import { ChatWidget } from "./components/Chat-widget";
-import { SignInPage } from "./pages/Signin-page";
-import { OnboardingPage } from "./pages/Onboarding-page";
-import { PlatformShowcase } from "./components/Platform-showcase";
-import { TestimonialsSection } from "./components/Testimonials-section";
+import { ChatWidget } from "./components/ChatWidget";
+import { PlatformShowcase } from "./components/PlatformShowcase";
+import { TestimonialsSection } from "./components/TestimonialsSection";
+import AppRoutes from "./routes/AppRoutes";
 
-function HomePage() {
+export function HomePage() {
 	return (
 		<div className='min-h-screen flex flex-col'>
 			<Navbar />
@@ -32,15 +30,7 @@ function HomePage() {
 }
 
 function App() {
-	return (
-		<Router>
-			<Routes>
-				<Route path='/' element={<HomePage />} />
-				<Route path='/signin' element={<SignInPage />} />
-				<Route path='/onboarding' element={<OnboardingPage />} />
-			</Routes>
-		</Router>
-	);
+	return <AppRoutes />;
 }
 
 export default App;
