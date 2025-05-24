@@ -34,8 +34,8 @@ export function ChannelOrbit({
   activeIndex: externalActiveIndex,
   setActiveIndex: externalSetActiveIndex,
   orbitSize = 300,
-  channelSize = 56, // 56px (14rem was too large)
-  centerSize = 80, // 80px (20rem was too large)
+  channelSize = 56,
+  centerSize = 80,
   autoRotate = true,
   rotationInterval = 3000,
   centerContent,
@@ -43,6 +43,7 @@ export function ChannelOrbit({
   className = ""
 }) {
   const [internalActiveIndex, setInternalActiveIndex] = useState(0);
+  const [viewportWidth, setViewportWidth] = useState(window.innerWidth);
 
   // Use either external or internal state
   const activeIndex = externalActiveIndex !== undefined ? externalActiveIndex : internalActiveIndex;
@@ -59,18 +60,44 @@ export function ChannelOrbit({
     return () => clearInterval(interval);
   }, [autoRotate, channels.length, rotationInterval, setActiveIndex]);
 
+  // Track viewport width for responsive sizing
+  useEffect(() => {
+    const handleResize = () => {
+      setViewportWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  // Responsive size calculations
+  const getResponsiveSize = defaultSize => {
+    if (viewportWidth < 640) {
+      // sm breakpoint
+      return defaultSize * 0.7; // 70% size on mobile
+    } else if (viewportWidth < 768) {
+      // md breakpoint
+      return defaultSize * 0.85; // 85% size on tablet
+    }
+    return defaultSize;
+  };
+
+  const responsiveOrbitSize = getResponsiveSize(orbitSize);
+  const responsiveChannelSize = getResponsiveSize(channelSize);
+  const responsiveCenterSize = getResponsiveSize(centerSize);
+
   // Orbit radius is half the orbit size
-  const radius = orbitSize / 2;
+  const radius = responsiveOrbitSize / 2;
 
   return (
     <div
       className={`relative flex items-center justify-center ${className}`}
-      style={{ height: `${orbitSize}px`, width: `${orbitSize}px` }}
+      style={{ height: `${responsiveOrbitSize}px`, width: `${responsiveOrbitSize}px` }}
     >
       {showBorder && (
         <div
           className="absolute border-2 border-dashed border-gray-200 rounded-full animate-spin-slow"
-          style={{ width: `${orbitSize}px`, height: `${orbitSize}px` }}
+          style={{ width: `${responsiveOrbitSize}px`, height: `${responsiveOrbitSize}px` }}
         ></div>
       )}
 
@@ -88,8 +115,8 @@ export function ChannelOrbit({
               y: y,
               backgroundColor: channel.color,
               color: "white",
-              width: `${channelSize}px`,
-              height: `${channelSize}px`,
+              width: `${responsiveChannelSize}px`,
+              height: `${responsiveChannelSize}px`,
               zIndex: activeIndex === index ? 10 : 5
             }}
             animate={{
@@ -99,7 +126,7 @@ export function ChannelOrbit({
             transition={{ type: "spring", stiffness: 300 }}
             onClick={() => setActiveIndex(index)}
           >
-            <div className="w-6 h-6">{channel.icon}</div>
+            <div className="w-5 h-5 sm:w-6 sm:h-6">{channel.icon}</div>
           </motion.div>
         );
       })}
@@ -107,8 +134,8 @@ export function ChannelOrbit({
       <div
         className="absolute rounded-full bg-[#4361EE] flex items-center justify-center text-white z-20"
         style={{
-          width: `${centerSize}px`,
-          height: `${centerSize}px`
+          width: `${responsiveCenterSize}px`,
+          height: `${responsiveCenterSize}px`
         }}
       >
         <motion.div
@@ -118,8 +145,8 @@ export function ChannelOrbit({
         ></motion.div>
         {centerContent || (
           <div className="absolute flex items-center justify-center">
-            <span className="text-base font-bold text-white">armin</span>
-            <span className="text-sm font-bold bg-gradient-to-r from-white to-[#1FB7DD] bg-clip-text text-transparent">
+            <span className="text-sm sm:text-base font-bold text-white">armin</span>
+            <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-white to-[#1FB7DD] bg-clip-text text-transparent">
               cx
             </span>
           </div>

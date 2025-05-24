@@ -359,6 +359,7 @@ export function OnboardingPage() {
                       orbitSize={300}
                       channelSize={56}
                       centerSize={80}
+                      className="transform scale-90 md:scale-100"
                     />
                   </div>
                 )}
