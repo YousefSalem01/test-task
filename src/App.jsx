@@ -11,26 +11,26 @@ import { TestimonialsSection } from "./components/TestimonialsSection/Testimonia
 import AppRoutes from "./routes/AppRoutes";
 
 export function HomePage() {
-	return (
-		<div className='min-h-screen flex flex-col'>
-			<Navbar />
-			<main className='flex-1 pt-16'>
-				<HeroSection />
-				<HowItWorks />
-				<ChannelsSection />
-				<PlatformShowcase />
-				<FeaturesSection />
-				<TestimonialsSection />
-				<CTASection />
-			</main>
-			<Footer />
-			<ChatWidget />
-		</div>
-	);
+  return (
+    <div className="min-h-screen flex flex-col">
+      <Navbar />
+      <main className="flex-1 pt-16">
+        <HeroSection />
+        <HowItWorks />
+        <ChannelsSection />
+        <PlatformShowcase />
+        <FeaturesSection />
+        <TestimonialsSection />
+        <CTASection />
+      </main>
+      <Footer />
+      <ChatWidget />
+    </div>
+  );
 }
 
 function App() {
-	return <AppRoutes />;
+  return <AppRoutes />;
 }
 
 export default App;

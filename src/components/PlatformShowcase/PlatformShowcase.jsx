@@ -33,205 +33,211 @@ const customStyles = `
 `;
 
 const tabs = [
-	{
-		id: "playground",
-		label: "Playground",
-		icon: <Gamepad2 size={18} />,
-		image: dashboardBg,
-	},
-	{
-		id: "analytics",
-		label: "Analytics",
-		icon: <BarChart2 size={18} />,
-		image: analyticsBg,
-	},
-	{
-		id: "activity",
-		label: "Activity",
-		icon: <Activity size={18} />,
-		image: dashboardBg,
-	},
-	{
-		id: "sources",
-		label: "Sources",
-		icon: <Database size={18} />,
-		image: analyticsBg,
-	},
-	{
-		id: "actions",
-		label: "Actions",
-		icon: <Workflow size={18} />,
-		image: dashboardBg,
-	},
+  {
+    id: "playground",
+    label: "Playground",
+    icon: <Gamepad2 size={18} />,
+    image: dashboardBg
+  },
+  {
+    id: "analytics",
+    label: "Analytics",
+    icon: <BarChart2 size={18} />,
+    image: analyticsBg
+  },
+  {
+    id: "activity",
+    label: "Activity",
+    icon: <Activity size={18} />,
+    image: dashboardBg
+  },
+  {
+    id: "sources",
+    label: "Sources",
+    icon: <Database size={18} />,
+    image: analyticsBg
+  },
+  {
+    id: "actions",
+    label: "Actions",
+    icon: <Workflow size={18} />,
+    image: dashboardBg
+  }
 ];
 
 export function PlatformShowcase() {
-	const [activeTab, setActiveTab] = useState("playground");
-	const [autoRotate, setAutoRotate] = useState(true);
-	const [imagesLoaded, setImagesLoaded] = useState({});
-	const imagesRef = useRef({});
-	const tabsContainerRef = useRef(null);
+  const [activeTab, setActiveTab] = useState("playground");
+  const [autoRotate, setAutoRotate] = useState(true);
+  const [imagesLoaded, setImagesLoaded] = useState({});
+  const imagesRef = useRef({});
+  const tabsContainerRef = useRef(null);
 
-	// Preload all images
-	useEffect(() => {
-		tabs.forEach((tab) => {
-			const img = new Image();
-			img.src = tab.image;
-			img.onload = () => {
-				setImagesLoaded((prev) => ({
-					...prev,
-					[tab.id]: true,
-				}));
-			};
-			imagesRef.current[tab.id] = img;
-		});
-	}, []);
+  // Preload all images
+  useEffect(() => {
+    tabs.forEach(tab => {
+      const img = new Image();
+      img.src = tab.image;
+      img.onload = () => {
+        setImagesLoaded(prev => ({
+          ...prev,
+          [tab.id]: true
+        }));
+      };
+      imagesRef.current[tab.id] = img;
+    });
+  }, []);
 
-	// Auto-rotate tabs
-	useEffect(() => {
-		if (!autoRotate) return;
+  // Auto-rotate tabs
+  useEffect(() => {
+    if (!autoRotate) return;
 
-		const interval = setInterval(() => {
-			const currentIndex = tabs.findIndex((tab) => tab.id === activeTab);
-			const nextIndex = (currentIndex + 1) % tabs.length;
-			setActiveTab(tabs[nextIndex].id);
-		}, 5000);
+    const interval = setInterval(() => {
+      const currentIndex = tabs.findIndex(tab => tab.id === activeTab);
+      const nextIndex = (currentIndex + 1) % tabs.length;
+      setActiveTab(tabs[nextIndex].id);
+    }, 5000);
 
-		return () => clearInterval(interval);
-	}, [activeTab, autoRotate]);
+    return () => clearInterval(interval);
+  }, [activeTab, autoRotate]);
 
-	// Pause auto-rotation when user interacts with tabs
-	const handleTabClick = (tabId) => {
-		setActiveTab(tabId);
-		setAutoRotate(false);
+  // Pause auto-rotation when user interacts with tabs
+  const handleTabClick = tabId => {
+    setActiveTab(tabId);
+    setAutoRotate(false);
 
-		// Scroll active tab into view on mobile
-		if (tabsContainerRef.current) {
-			const activeTabElement = tabsContainerRef.current.querySelector(`[data-tab="${tabId}"]`);
-			if (activeTabElement) {
-				const containerRect = tabsContainerRef.current.getBoundingClientRect();
-				const tabRect = activeTabElement.getBoundingClientRect();
-				const scrollLeft = tabRect.left - containerRect.left - (containerRect.width - tabRect.width) / 2;
+    // Scroll active tab into view on mobile
+    if (tabsContainerRef.current) {
+      const activeTabElement = tabsContainerRef.current.querySelector(`[data-tab="${tabId}"]`);
+      if (activeTabElement) {
+        const containerRect = tabsContainerRef.current.getBoundingClientRect();
+        const tabRect = activeTabElement.getBoundingClientRect();
+        const scrollLeft = tabRect.left - containerRect.left - (containerRect.width - tabRect.width) / 2;
 
-				tabsContainerRef.current.scrollTo({
-					left: scrollLeft + tabsContainerRef.current.scrollLeft,
-					behavior: "smooth",
-				});
-			}
-		}
+        tabsContainerRef.current.scrollTo({
+          left: scrollLeft + tabsContainerRef.current.scrollLeft,
+          behavior: "smooth"
+        });
+      }
+    }
 
-		// Resume auto-rotation after 15 seconds of inactivity
-		setTimeout(() => {
-			setAutoRotate(true);
-		}, 15000);
-	};
+    // Resume auto-rotation after 15 seconds of inactivity
+    setTimeout(() => {
+      setAutoRotate(true);
+    }, 15000);
+  };
 
-	const activeTabData = tabs.find((tab) => tab.id === activeTab);
+  const activeTabData = tabs.find(tab => tab.id === activeTab);
 
-	return (
-		<section className='py-12 sm:py-20 relative overflow-hidden bg-[#0f0f0f]'>
-			{/* Custom styles */}
-			<style dangerouslySetInnerHTML={{ __html: customStyles }} />
+  return (
+    <section className="py-12 sm:py-20 relative overflow-hidden bg-[#0f0f0f]">
+      {/* Custom styles */}
+      <style dangerouslySetInnerHTML={{ __html: customStyles }} />
 
-			{/* Gradient background */}
-			<div className='absolute inset-0 bg-gradient-to-r from-[#4361EE]/20 via-[#4361EE]/10 to-[#1FB7DD]/20 opacity-80'></div>
+      {/* Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/20 via-[#4361EE]/10 to-[#1FB7DD]/20 opacity-80"></div>
 
-			{/* Hidden div to preload images */}
-			<div className='hidden'>
-				{tabs.map((tab) => (
-					<img key={tab.id} src={tab.image} alt='' />
-				))}
-			</div>
+      {/* Hidden div to preload images */}
+      <div className="hidden">
+        {tabs.map(tab => (
+          <img key={tab.id} src={tab.image} alt="" />
+        ))}
+      </div>
 
-			<div className='container mx-auto px-4 max-w-6xl relative z-10'>
-				<div className='text-center mb-8 sm:mb-12'>
-					<div className='inline-flex items-center rounded-full bg-[#4361EE]/10 px-3 py-1 text-sm text-white/90 mb-4'>
-						<span className='mr-2'>✨</span>
-						<span>Explore</span>
-					</div>
-					<h2 className='text-3xl sm:text-4xl font-bold text-white mb-4'>
-						Discover the <span className='text-[#4361EE]'>armin</span>
-						<span className='bg-gradient-to-r from-[#4361EE] to-[#1FB7DD] bg-clip-text text-transparent'>cx</span> platform
-					</h2>
-					<p className='text-white/80 max-w-2xl mx-auto text-sm sm:text-base'>
-						Our comprehensive platform provides all the tools you need to build, deploy, and optimize your AI agents
-					</p>
-				</div>
+      <div className="container mx-auto px-4 max-w-6xl relative z-10">
+        <div className="text-center mb-8 sm:mb-12">
+          <div className="inline-flex items-center rounded-full bg-[#4361EE]/10 px-3 py-1 text-sm text-white/90 mb-4">
+            <span className="mr-2">✨</span>
+            <span>Explore</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
+            Discover the <span className="text-[#4361EE]">armin</span>
+            <span className="bg-gradient-to-r from-[#4361EE] to-[#1FB7DD] bg-clip-text text-transparent">cx</span>{" "}
+            platform
+          </h2>
+          <p className="text-white/80 max-w-2xl mx-auto text-sm sm:text-base">
+            Our comprehensive platform provides all the tools you need to build, deploy, and optimize your AI agents
+          </p>
+        </div>
 
-				{/* Tabs - mobile optimized */}
-				<div className='flex justify-center mb-6 sm:mb-8'>
-					<div ref={tabsContainerRef} className='mobile-tabs-container inline-flex bg-black/30 rounded-full p-1.5 max-w-full'>
-						{tabs.map((tab) => (
-							<button
-								key={tab.id}
-								data-tab={tab.id}
-								onClick={() => handleTabClick(tab.id)}
-								className={`flex items-center px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
-									activeTab === tab.id ? "bg-white text-[#4361EE] tab-active" : "text-white hover:text-white hover:bg-white/10"
-								}`}
-							>
-								<span className='mr-1 sm:mr-2'>{tab.icon}</span>
-								{tab.label}
-							</button>
-						))}
-					</div>
-				</div>
+        {/* Tabs - mobile optimized */}
+        <div className="flex justify-center mb-6 sm:mb-8">
+          <div
+            ref={tabsContainerRef}
+            className="mobile-tabs-container inline-flex bg-black/30 rounded-full p-1.5 max-w-full"
+          >
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                data-tab={tab.id}
+                onClick={() => handleTabClick(tab.id)}
+                className={`flex items-center px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
+                  activeTab === tab.id
+                    ? "bg-white text-[#4361EE] tab-active"
+                    : "text-white hover:text-white hover:bg-white/10"
+                }`}
+              >
+                <span className="mr-1 sm:mr-2">{tab.icon}</span>
+                {tab.label}
+              </button>
+            ))}
+          </div>
+        </div>
 
-				{/* Image showcase - responsive height */}
-				<div className='relative h-[350px] sm:h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase'>
-					{/* Colored background glow */}
-					<div className='absolute inset-0'>
-						<div className='absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-[#4361EE]/10 to-[#1FB7DD]/10 opacity-100'></div>
-						<div className='absolute -inset-10 bg-[#4361EE]/5 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'></div>
-					</div>
+        {/* Image showcase - responsive height */}
+        <div className="relative h-[350px] sm:h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase">
+          {/* Colored background glow */}
+          <div className="absolute inset-0">
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-[#4361EE]/10 to-[#1FB7DD]/10 opacity-100"></div>
+            <div className="absolute -inset-10 bg-[#4361EE]/5 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+          </div>
 
-					{/* Browser window frame */}
-					<div className='absolute inset-x-0 top-0 h-8 sm:h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-4 z-20'>
-						<div className='flex space-x-2'>
-							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF6B35]/80'></div>
-							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBE0B]/80'></div>
-							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#1FB7DD]/80'></div>
-						</div>
-					</div>
+          {/* Browser window frame */}
+          <div className="absolute inset-x-0 top-0 h-8 sm:h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-4 z-20">
+            <div className="flex space-x-2">
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF6B35]/80"></div>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBE0B]/80"></div>
+              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#1FB7DD]/80"></div>
+            </div>
+          </div>
 
-					{/* Images */}
-					<AnimatePresence mode='wait'>
-						{tabs.map(
-							(tab) =>
-								activeTab === tab.id && (
-									<motion.div
-										key={tab.id}
-										initial={{ opacity: 0 }}
-										animate={{ opacity: 1 }}
-										exit={{ opacity: 0 }}
-										transition={{ duration: 0.5 }}
-										className='absolute inset-0 pt-8 sm:pt-10' // Adjusted padding top for mobile
-									>
-										<div className='w-full h-full rounded-b-2xl overflow-hidden'>
-											<img src={tab.image} alt={tab.label} className='w-full h-full object-cover' loading='eager' />
-										</div>
-									</motion.div>
-								)
-						)}
-					</AnimatePresence>
-				</div>
+          {/* Images */}
+          <AnimatePresence mode="wait">
+            {tabs.map(
+              tab =>
+                activeTab === tab.id && (
+                  <motion.div
+                    key={tab.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.5 }}
+                    className="absolute inset-0 pt-8 sm:pt-10" // Adjusted padding top for mobile
+                  >
+                    <div className="w-full h-full rounded-b-2xl overflow-hidden">
+                      <img src={tab.image} alt={tab.label} className="w-full h-full object-cover" loading="eager" />
+                    </div>
+                  </motion.div>
+                )
+            )}
+          </AnimatePresence>
+        </div>
 
-				{/* Progress indicators - simplified for mobile */}
-				<div className='flex justify-center mt-4 sm:mt-6'>
-					<div className='flex space-x-2 sm:space-x-3'>
-						{tabs.map((tab) => (
-							<button
-								key={tab.id}
-								onClick={() => handleTabClick(tab.id)}
-								className={`rounded-full transition-all duration-300 h-2 sm:h-2.5 ${
-									activeTab === tab.id ? "w-8 sm:w-10 indicator-active" : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/30"
-								}`}
-								aria-label={`Switch to ${tab.label} tab`}
-							/>
-						))}
-					</div>
-				</div>
-			</div>
-		</section>
-	);
+        {/* Progress indicators - simplified for mobile */}
+        <div className="flex justify-center mt-4 sm:mt-6">
+          <div className="flex space-x-2 sm:space-x-3">
+            {tabs.map(tab => (
+              <button
+                key={tab.id}
+                onClick={() => handleTabClick(tab.id)}
+                className={`rounded-full transition-all duration-300 h-2 sm:h-2.5 ${
+                  activeTab === tab.id ? "w-8 sm:w-10 indicator-active" : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/30"
+                }`}
+                aria-label={`Switch to ${tab.label} tab`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }

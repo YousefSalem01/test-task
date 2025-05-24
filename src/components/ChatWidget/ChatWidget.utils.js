@@ -11,11 +11,11 @@ export const generateMessageId = () => {
  * @param {string} content - Message content
  * @returns {Object} Formatted bot message object
  */
-export const formatBotMessage = (content) => {
+export const formatBotMessage = content => {
   return {
     id: generateMessageId(),
     content,
-    sender: "bot",
+    sender: "bot"
   };
 };
 
@@ -24,11 +24,11 @@ export const formatBotMessage = (content) => {
  * @param {string} content - Message content
  * @returns {Object} Formatted user message object
  */
-export const formatUserMessage = (content) => {
+export const formatUserMessage = content => {
   return {
     id: generateMessageId(),
     content,
-    sender: "user",
+    sender: "user"
   };
 };
 
@@ -59,6 +59,6 @@ export const shouldShowQuickReplies = (messages, threshold = 3) => {
  * @param {Array} messages - Array of message objects
  * @returns {string} CSS class for message container height
  */
-export const getMessagesContainerClass = (messages) => {
+export const getMessagesContainerClass = messages => {
   return messages.length <= 3 ? "h-[280px]" : "h-[344px]";
-}; 
+};
