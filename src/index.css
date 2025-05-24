@@ -26,7 +26,7 @@
 }
 
 .animate-spin-slow {
-	animation: spin-slow 15s linear infinite;
+	animation: spin-slow 20s linear infinite;
 }
 
 /* Mobile scrolling and layout utilities */

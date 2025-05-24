@@ -4,7 +4,6 @@ import { Button } from "../../uikit/Button/Button";
 import { Check, Mail, Globe, Instagram, Facebook, Phone, MessageSquare } from "lucide-react";
 import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 import logoSrc from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
-import "../../styles/animations.css";
 import { ChannelOrbit } from "../../uikit/ChannelOrbit/ChannelOrbit";
 
 const steps = [
