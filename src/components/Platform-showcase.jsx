@@ -13,6 +13,23 @@ const customStyles = `
 	.indicator-active {
 		background: linear-gradient(to right, #4361EE, #1FB7DD);
 	}
+	
+	@media (max-width: 640px) {
+		.mobile-tabs-container {
+			overflow-x: auto;
+			-webkit-overflow-scrolling: touch;
+			scrollbar-width: none;
+			-ms-overflow-style: none;
+		}
+		
+		.mobile-tabs-container::-webkit-scrollbar {
+			display: none;
+		}
+		
+		.mobile-showcase {
+			height: 400px !important;
+		}
+	}
 `;
 
 const tabs = [
@@ -53,6 +70,7 @@ export function PlatformShowcase() {
 	const [autoRotate, setAutoRotate] = useState(true);
 	const [imagesLoaded, setImagesLoaded] = useState({});
 	const imagesRef = useRef({});
+	const tabsContainerRef = useRef(null);
 
 	// Preload all images
 	useEffect(() => {
@@ -87,6 +105,21 @@ export function PlatformShowcase() {
 		setActiveTab(tabId);
 		setAutoRotate(false);
 
+		// Scroll active tab into view on mobile
+		if (tabsContainerRef.current) {
+			const activeTabElement = tabsContainerRef.current.querySelector(`[data-tab="${tabId}"]`);
+			if (activeTabElement) {
+				const containerRect = tabsContainerRef.current.getBoundingClientRect();
+				const tabRect = activeTabElement.getBoundingClientRect();
+				const scrollLeft = tabRect.left - containerRect.left - (containerRect.width - tabRect.width) / 2;
+
+				tabsContainerRef.current.scrollTo({
+					left: scrollLeft + tabsContainerRef.current.scrollLeft,
+					behavior: "smooth",
+				});
+			}
+		}
+
 		// Resume auto-rotation after 15 seconds of inactivity
 		setTimeout(() => {
 			setAutoRotate(true);
@@ -96,7 +129,7 @@ export function PlatformShowcase() {
 	const activeTabData = tabs.find((tab) => tab.id === activeTab);
 
 	return (
-		<section className='py-20 relative overflow-hidden bg-[#0f0f0f]'>
+		<section className='py-12 sm:py-20 relative overflow-hidden bg-[#0f0f0f]'>
 			{/* Custom styles */}
 			<style dangerouslySetInnerHTML={{ __html: customStyles }} />
 
@@ -111,38 +144,41 @@ export function PlatformShowcase() {
 			</div>
 
 			<div className='container mx-auto px-4 max-w-6xl relative z-10'>
-				<div className='text-center mb-12'>
+				<div className='text-center mb-8 sm:mb-12'>
 					<div className='inline-flex items-center rounded-full bg-[#4361EE]/10 px-3 py-1 text-sm text-white/90 mb-4'>
 						<span className='mr-2'>✨</span>
 						<span>Explore</span>
 					</div>
-					<h2 className='text-4xl font-bold text-white mb-4'>
+					<h2 className='text-3xl sm:text-4xl font-bold text-white mb-4'>
 						Discover the <span className='text-[#4361EE]'>armin</span>
 						<span className='bg-gradient-to-r from-[#4361EE] to-[#1FB7DD] bg-clip-text text-transparent'>cx</span> platform
 					</h2>
-					<p className='text-white/80 max-w-2xl mx-auto'>Our comprehensive platform provides all the tools you need to build, deploy, and optimize your AI agents</p>
+					<p className='text-white/80 max-w-2xl mx-auto text-sm sm:text-base'>
+						Our comprehensive platform provides all the tools you need to build, deploy, and optimize your AI agents
+					</p>
 				</div>
 
-				{/* Tabs */}
-				<div className='flex justify-center mb-8 overflow-x-auto pb-2'>
-					<div className='inline-flex bg-black/30 rounded-full p-1.5'>
+				{/* Tabs - mobile optimized */}
+				<div className='flex justify-center mb-6 sm:mb-8'>
+					<div ref={tabsContainerRef} className='mobile-tabs-container inline-flex bg-black/30 rounded-full p-1.5 max-w-full'>
 						{tabs.map((tab) => (
 							<button
 								key={tab.id}
+								data-tab={tab.id}
 								onClick={() => handleTabClick(tab.id)}
-								className={`flex items-center px-5 py-2 rounded-full text-sm font-medium transition-all ${
+								className={`flex items-center px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
 									activeTab === tab.id ? "bg-white text-[#4361EE] tab-active" : "text-white hover:text-white hover:bg-white/10"
 								}`}
 							>
-								<span className='mr-2'>{tab.icon}</span>
+								<span className='mr-1 sm:mr-2'>{tab.icon}</span>
 								{tab.label}
 							</button>
 						))}
 					</div>
 				</div>
 
-				{/* Image showcase */}
-				<div className='relative h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black'>
+				{/* Image showcase - responsive height */}
+				<div className='relative h-[350px] sm:h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase'>
 					{/* Colored background glow */}
 					<div className='absolute inset-0'>
 						<div className='absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-[#4361EE]/10 to-[#1FB7DD]/10 opacity-100'></div>
@@ -150,11 +186,11 @@ export function PlatformShowcase() {
 					</div>
 
 					{/* Browser window frame */}
-					<div className='absolute inset-x-0 top-0 h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-4 z-20'>
+					<div className='absolute inset-x-0 top-0 h-8 sm:h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-4 z-20'>
 						<div className='flex space-x-2'>
-							<div className='w-3 h-3 rounded-full bg-[#FF6B35]/80'></div>
-							<div className='w-3 h-3 rounded-full bg-[#FFBE0B]/80'></div>
-							<div className='w-3 h-3 rounded-full bg-[#1FB7DD]/80'></div>
+							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF6B35]/80'></div>
+							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBE0B]/80'></div>
+							<div className='w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#1FB7DD]/80'></div>
 						</div>
 					</div>
 
@@ -169,7 +205,7 @@ export function PlatformShowcase() {
 										animate={{ opacity: 1 }}
 										exit={{ opacity: 0 }}
 										transition={{ duration: 0.5 }}
-										className='absolute inset-0 pt-10' // Add padding top for the browser frame
+										className='absolute inset-0 pt-8 sm:pt-10' // Adjusted padding top for mobile
 									>
 										<div className='w-full h-full rounded-b-2xl overflow-hidden'>
 											<img src={tab.image} alt={tab.label} className='w-full h-full object-cover' loading='eager' />
@@ -180,15 +216,15 @@ export function PlatformShowcase() {
 					</AnimatePresence>
 				</div>
 
-				{/* Progress indicators */}
-				<div className='flex justify-center mt-6'>
-					<div className='flex space-x-3'>
+				{/* Progress indicators - simplified for mobile */}
+				<div className='flex justify-center mt-4 sm:mt-6'>
+					<div className='flex space-x-2 sm:space-x-3'>
 						{tabs.map((tab) => (
 							<button
 								key={tab.id}
 								onClick={() => handleTabClick(tab.id)}
-								className={`rounded-full transition-all duration-300 h-2.5 ${
-									activeTab === tab.id ? "w-10 indicator-active" : "w-2.5 bg-white/20 hover:bg-white/30"
+								className={`rounded-full transition-all duration-300 h-2 sm:h-2.5 ${
+									activeTab === tab.id ? "w-8 sm:w-10 indicator-active" : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/30"
 								}`}
 								aria-label={`Switch to ${tab.label} tab`}
 							/>

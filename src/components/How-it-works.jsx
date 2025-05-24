@@ -1,57 +1,105 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Play, Pause } from "lucide-react";
+import { Play, Pause, ChevronDown } from "lucide-react";
+import videoSrc from "../assets/videos/hero.webm";
 
 const steps = [
 	{
 		id: 1,
 		number: "01",
-		title: "Build & deploy your agent",
-		description: "Train an agent on your business data, configure the actions it can take, then deploy it for your customers.",
+		title: "All-in-One Software",
+		description: "armincx is the only E-Commerce-first Customer Experience Suite that unites all channels in one tool.",
 	},
 	{
 		id: 2,
 		number: "02",
-		title: "Agent solves your customers' problems",
-		description: "Your AI agent handles customer inquiries automatically, providing accurate information and resolving issues efficiently.",
+		title: "Centralized CRM",
+		description: "Manage all customer interactions from all channels in one central system without data loss.",
 	},
 	{
 		id: 3,
 		number: "03",
-		title: "Refine & optimize",
-		description: "Continuously improve your agent's performance by analyzing interactions and refining its responses and capabilities.",
+		title: "Omnichannel Inbox",
+		description: "Process all customer inquiries in a unified inbox. Never switch between 3 different apps again.",
 	},
 	{
 		id: 4,
 		number: "04",
-		title: "Route complex issues to a human",
-		description: "When issues require human expertise, your agent seamlessly transfers the conversation to your support team.",
+		title: "Superior Artificial Intelligence",
+		description: "Train a central AI that uses your knowledge across platforms and can perfectly answer any product question through integration with your tech stack.",
 	},
 	{
 		id: 5,
 		number: "05",
-		title: "Review analytics & insights",
-		description: "Gain valuable insights from comprehensive analytics to understand customer needs and optimize your business processes.",
+		title: "Automations",
+		description: "Create cross-channel automations for seamless customer experiences across all platforms.",
 	},
 ];
 
 export function HowItWorks() {
 	const [activeStep, setActiveStep] = useState(1);
 	const [isPlaying, setIsPlaying] = useState(true);
+	const demoCardRef = useRef(null);
+	const videoRef = useRef(null);
+	const [isMobile, setIsMobile] = useState(false);
+
+	// Check if we're on mobile
+	useEffect(() => {
+		const checkMobile = () => {
+			setIsMobile(window.innerWidth < 1024);
+		};
+
+		checkMobile();
+		window.addEventListener("resize", checkMobile);
+
+		return () => {
+			window.removeEventListener("resize", checkMobile);
+		};
+	}, []);
+
+	// Function to scroll to demo card when a step is clicked on mobile
+	const handleStepClick = (stepId) => {
+		setActiveStep(stepId);
+
+		// On mobile, scroll to the demo card
+		if (isMobile && demoCardRef.current) {
+			setTimeout(() => {
+				demoCardRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+			}, 300);
+		}
+	};
+
+	// Function to toggle video play/pause
+	const togglePlay = () => {
+		if (videoRef.current) {
+			if (isPlaying) {
+				videoRef.current.pause();
+			} else {
+				videoRef.current.play();
+			}
+			setIsPlaying(!isPlaying);
+		}
+	};
 
 	return (
-		<section className='py-16 bg-white'>
+		<section className='py-16 bg-white mobile-scroll-section'>
 			<div className='container mx-auto px-4 max-w-6xl'>
-				<div className='grid grid-cols-1 gap-8 lg:grid-cols-2'>
-					{/* Left side - Steps */}
-					<div className='space-y-4'>
+				<div className='text-center mb-10'>
+					<h2 className='text-3xl font-bold text-[#313131]'>Say Goodbye to Gorgias, Zendesk and Others</h2>
+					<p className='mt-4 text-lg text-[#6e7687] max-w-2xl mx-auto'>armincx completely replaces your old ticketing tool.</p>
+				</div>
+
+				{/* Mobile and Desktop layout wrapper */}
+				<div className='flex flex-col lg:grid lg:grid-cols-2 gap-8'>
+					{/* Steps section - Same for both layouts */}
+					<div className='space-y-4 order-1'>
 						{steps.map((step) => (
 							<motion.div
 								key={step.id}
 								className={`rounded-xl p-6 cursor-pointer transition-all ${
-									activeStep === step.id ? "bg-white shadow-md border border-gray-100" : "bg-gray-50 hover:bg-gray-100/80"
+									activeStep === step.id ? `bg-white shadow-md border border-gray-100 ${isMobile ? "mobile-highlight" : ""}` : "bg-gray-50 hover:bg-gray-100/80"
 								}`}
-								onClick={() => setActiveStep(step.id)}
+								onClick={() => handleStepClick(step.id)}
 								whileHover={{ scale: activeStep === step.id ? 1 : 1.02 }}
 							>
 								<div className='flex items-start gap-4'>
@@ -74,46 +122,43 @@ export function HowItWorks() {
 											</AnimatePresence>
 										</div>
 									</div>
+
+									{/* Indicate that clicking will show more on mobile */}
+									<div className='lg:hidden'>
+										<ChevronDown size={16} className={`text-gray-400 transition-transform ${activeStep === step.id ? "rotate-180" : ""}`} />
+									</div>
 								</div>
 							</motion.div>
 						))}
+
+						{/* Mobile scroll indicator */}
+						<div className='flex justify-center lg:hidden mt-4'>
+							<motion.div
+								className='flex items-center text-[#4361EE] text-sm'
+								initial={{ y: 0 }}
+								animate={{ y: [0, 5, 0] }}
+								transition={{ repeat: Infinity, duration: 1.5 }}
+								onClick={() => demoCardRef.current?.scrollIntoView({ behavior: "smooth" })}
+							>
+								<ChevronDown size={16} className='mr-1' />
+								<span>View demo</span>
+							</motion.div>
+						</div>
 					</div>
 
-					{/* Right side - Video/Demo */}
-					<div className='relative rounded-xl overflow-hidden bg-gradient-to-br from-[#4361EE] to-[#1FB7DD] h-[500px]'>
-						<div className='absolute inset-0 flex items-center justify-center'>
-							<div className='absolute inset-0 bg-gradient-to-b from-[#4361EE]/20 to-[#1FB7DD]/40'></div>
+					{/* Demo/Video card - Same for both layouts but positioned differently */}
+					<div ref={demoCardRef} className='relative rounded-xl overflow-hidden bg-gradient-to-br from-[#4361EE] to-[#1FB7DD] h-[500px] order-2 scroll-mt-demo'>
+						{/* Video background */}
+						<video ref={videoRef} className='absolute inset-0 w-full h-full object-cover' autoPlay={isPlaying} muted loop playsInline src={videoSrc} />
+						<div className='absolute inset-0 bg-gradient-to-b from-[#4361EE]/20 to-[#1FB7DD]/30'></div>
 
-							<div className='relative z-10 w-4/5 max-w-md bg-white rounded-xl p-6 shadow-lg'>
-								<div className='flex items-center justify-between mb-4'>
-									<div className='flex items-center space-x-4'>
-										<div className='h-10 w-10 rounded-full bg-black flex items-center justify-center'>
-											<svg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-												<path d='M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z' fill='white' />
-											</svg>
-										</div>
-										<div className='h-2 w-2 rounded-full bg-green-500'></div>
-										<div className='h-10 w-10 rounded-full bg-green-500 flex items-center justify-center'>
-											<svg width='20' height='20' viewBox='0 0 24 24' fill='none' xmlns='http://www.w3.org/2000/svg'>
-												<path d='M12 5V19M5 12H19' stroke='white' strokeWidth='2' strokeLinecap='round' strokeLinejoin='round' />
-											</svg>
-										</div>
-									</div>
-								</div>
-
-								<h3 className='text-xl font-semibold text-center mb-2'>Your AI Agent</h3>
-
-								<div className='w-full h-4 bg-gray-100 rounded-full mb-4'></div>
-								<div className='w-3/4 h-3 bg-gray-100 rounded-full mx-auto'></div>
-							</div>
-
-							<button
-								className='absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors'
-								onClick={() => setIsPlaying(!isPlaying)}
-							>
-								{isPlaying ? <Pause size={20} /> : <Play size={20} />}
-							</button>
-						</div>
+						{/* Video controls */}
+						<button
+							className='absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors'
+							onClick={togglePlay}
+						>
+							{isPlaying ? <Pause size={20} /> : <Play size={20} />}
+						</button>
 					</div>
 				</div>
 			</div>

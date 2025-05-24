@@ -21,7 +21,7 @@ export function ChannelsSection() {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setActiveIndex((prev) => (prev + 1) % channels.length);
-		}, 2000);
+		}, 3000);
 		return () => clearInterval(interval);
 	}, []);
 
