@@ -139,12 +139,13 @@ export function HeroSection() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/10 to-[#1FB7DD]/10"></div>
 
               {/* Video controls */}
-              <button
-                onClick={togglePlay}
-                className="absolute bottom-2 md:bottom-4 left-2 md:left-4 h-8 w-8 md:h-12 md:w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
-              >
-                {isPlaying ? <Pause size={16} className="md:size-20" /> : <Play size={16} className="md:size-20" />}
-              </button>
+              {/* Video controls */}
+            <button
+              className="absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
+              onClick={togglePlay}
+            >
+              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+            </button>
             </div>
           </motion.div>
         </div>
