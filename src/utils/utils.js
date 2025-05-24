@@ -1,6 +1,5 @@
-/**
- * Utility function to conditionally join class names
- */
-// export function cn(...classes) {
-//     return classes.filter(Boolean).join(" ")
-//   }
+import { clsx } from "clsx";
+
+export function cn(...inputs) {
+  return clsx(inputs);
+}

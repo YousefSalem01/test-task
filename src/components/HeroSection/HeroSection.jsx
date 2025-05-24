@@ -140,12 +140,12 @@ export function HeroSection() {
 
               {/* Video controls */}
               {/* Video controls */}
-            <button
-              className="absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
-              onClick={togglePlay}
-            >
-              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-            </button>
+              <button
+                className="absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
+                onClick={togglePlay}
+              >
+                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
+              </button>
             </div>
           </motion.div>
         </div>

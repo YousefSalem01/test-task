@@ -1,4 +1,14 @@
-import Carousel from "../../uikit/Carousel/Carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselPrevious,
+  CarouselNext,
+  CarouselDots
+} from "../../uikit/Carousel/Carousel";
+import TestimonialCard from "./TestimonialCard";
+import Autoplay from "embla-carousel-autoplay";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -42,6 +52,15 @@ const testimonials = [
 ];
 
 export function TestimonialsSection() {
+  const [api, setApi] = useState(null);
+
+  // Create autoplay plugin instance
+  const autoplayPlugin = Autoplay({
+    delay: 5000,
+    stopOnInteraction: false,
+    stopOnMouseEnter: true
+  });
+
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4 max-w-6xl">
@@ -53,7 +72,18 @@ export function TestimonialsSection() {
         </div>
 
         <div className="relative">
-          <Carousel items={testimonials} />
+          <Carousel opts={{ loop: true, align: "start" }} plugins={[autoplayPlugin]} setApi={setApi} className="py-8">
+            <CarouselContent>
+              {testimonials.map((testimonial, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <TestimonialCard testimonial={testimonial} index={index} />
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            <CarouselPrevious />
+            <CarouselNext />
+            <CarouselDots />
+          </Carousel>
         </div>
       </div>
     </section>
