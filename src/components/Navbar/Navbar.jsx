@@ -7,17 +7,6 @@ import arminCxLogo from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  // Handle scrolling effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 10);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   // Close mobile menu when screen size changes to desktop
   useEffect(() => {
@@ -45,9 +34,7 @@ export function Navbar() {
       animate={{ y: 0 }}
     >
       <div
-        className={`relative z-10 container max-w-4xl mx-auto flex items-center justify-between bg-white/90 backdrop-blur-xs rounded-full shadow-md px-4 sm:px-5 py-2 border border-white/70 transition-all duration-200 ${
-          scrolled ? "shadow-lg" : "shadow-md"
-        }`}
+        className={`relative z-10 container max-w-4xl mx-auto flex items-center justify-between bg-white/90 backdrop-blur-xs rounded-full shadow-md px-4 sm:px-5 py-2 border border-white/70 transition-all duration-200`}
       >
         <div className="flex items-center">
           <a href="/" className="flex items-center">
