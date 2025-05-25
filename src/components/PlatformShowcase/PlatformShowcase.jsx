@@ -27,7 +27,18 @@ const customStyles = `
 		}
 		
 		.mobile-showcase {
-			height: 400px !important;
+			height: 300px !important;
+		}
+		
+		.mobile-image {
+			object-fit: contain !important;
+			object-position: center top !important;
+		}
+	}
+	
+	@media (max-width: 480px) {
+		.mobile-showcase {
+			height: 250px !important;
 		}
 	}
 `;
@@ -139,7 +150,7 @@ export function PlatformShowcase() {
       {/* Hidden div to preload images */}
       <div className="hidden">
         {tabs.map(tab => (
-          <img key={tab.id} src={tab.image} alt="" />
+          <img key={tab.id} src={tab.image || "/placeholder.svg"} alt="" />
         ))}
       </div>
 
@@ -183,8 +194,8 @@ export function PlatformShowcase() {
           </div>
         </div>
 
-        {/* Image showcase - responsive height */}
-        <div className="relative h-[350px] sm:h-[400px] md:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase">
+        {/* Image showcase - responsive height and improved mobile display */}
+        <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase">
           {/* Colored background glow */}
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-[#4361EE]/10 to-[#1FB7DD]/10 opacity-100"></div>
@@ -192,11 +203,11 @@ export function PlatformShowcase() {
           </div>
 
           {/* Browser window frame */}
-          <div className="absolute inset-x-0 top-0 h-8 sm:h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-4 z-20">
-            <div className="flex space-x-2">
-              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FF6B35]/80"></div>
-              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#FFBE0B]/80"></div>
-              <div className="w-2 h-2 sm:w-3 sm:h-3 rounded-full bg-[#1FB7DD]/80"></div>
+          <div className="absolute inset-x-0 top-0 h-6 sm:h-8 md:h-10 bg-[#111]/80 border-b border-white/10 rounded-t-2xl flex items-center px-3 sm:px-4 z-20">
+            <div className="flex space-x-1 sm:space-x-2">
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#FF6B35]/80"></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#FFBE0B]/80"></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#1FB7DD]/80"></div>
             </div>
           </div>
 
@@ -211,10 +222,15 @@ export function PlatformShowcase() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.5 }}
-                    className="absolute inset-0 pt-8 sm:pt-10" // Adjusted padding top for mobile
+                    className="absolute inset-0 pt-6 sm:pt-8 md:pt-10"
                   >
-                    <div className="w-full h-full rounded-b-2xl overflow-hidden">
-                      <img src={tab.image} alt={tab.label} className="w-full h-full object-cover" loading="eager" />
+                    <div className="w-full h-full rounded-b-2xl overflow-hidden bg-gray-900">
+                      <img
+                        src={tab.image || "/placeholder.svg"}
+                        alt={tab.label}
+                        className="w-full h-full object-contain sm:object-cover mobile-image"
+                        loading="eager"
+                      />
                     </div>
                   </motion.div>
                 )
@@ -229,8 +245,10 @@ export function PlatformShowcase() {
               <button
                 key={tab.id}
                 onClick={() => handleTabClick(tab.id)}
-                className={`rounded-full transition-all duration-300 h-2 sm:h-2.5 ${
-                  activeTab === tab.id ? "w-8 sm:w-10 indicator-active" : "w-2 sm:w-2.5 bg-white/20 hover:bg-white/30"
+                className={`rounded-full transition-all duration-300 h-1.5 sm:h-2 md:h-2.5 ${
+                  activeTab === tab.id
+                    ? "w-6 sm:w-8 md:w-10 indicator-active"
+                    : "w-1.5 sm:w-2 md:w-2.5 bg-white/20 hover:bg-white/30"
                 }`}
                 aria-label={`Switch to ${tab.label} tab`}
               />
