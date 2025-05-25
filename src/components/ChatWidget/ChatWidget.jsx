@@ -2,6 +2,10 @@ import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageSquare, Send, X, MoreVertical, PlusCircle, LogOut, History } from "lucide-react";
 import { Button } from "../../uikit/Button/Button";
+import TextField from "../../uikit/TextField/TextField";
+import Avatar from "../../uikit/Avatar/Avatar";
+import Dropdown from "../../uikit/Dropdown/Dropdown";
+import IconButton from "../../uikit/IconButton/IconButton";
 
 // Import from extracted files
 import { initialMessages, predefinedQuestions } from "./ChatWidget.data";
@@ -57,6 +61,16 @@ export function ChatWidget() {
     simulateBotResponse(question.answer, botMessage => setMessages(prev => [...prev, botMessage]));
   };
 
+  const handleMenuAction = item => {
+    if (item.id === "new") {
+      handleStartNewChat();
+    } else if (item.id === "end") {
+      handleEndChat();
+    } else if (item.id === "history") {
+      handleViewRecentChats();
+    }
+  };
+
   const handleStartNewChat = () => {
     setMessages(initialMessages);
     setShowDropdown(false);
@@ -92,17 +106,25 @@ export function ChatWidget() {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
 
+  // Menu items for dropdown
+  const menuItems = [
+    { id: "new", label: "Start a new chat", icon: <PlusCircle size={16} /> },
+    { id: "end", label: "End chat", icon: <LogOut size={16} /> },
+    { id: "history", label: "View recent chats", icon: <History size={16} /> }
+  ];
+
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {/* Chat button */}
-      <motion.button
-        className={styles.chatButton}
+      <IconButton
+        icon={isOpen ? <X size={24} /> : <MessageSquare size={24} />}
         onClick={toggleChat}
-        whileHover={animations.chatButton.hover}
-        whileTap={animations.chatButton.tap}
-      >
-        {isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-      </motion.button>
+        variant="primary"
+        size="lg"
+        rounded
+        className="shadow-lg"
+        ariaLabel={isOpen ? "Close chat" : "Open chat"}
+      />
 
       {/* Chat window */}
       <AnimatePresence>
@@ -117,54 +139,24 @@ export function ChatWidget() {
             {/* Chat header */}
             <div className={styles.chatHeader}>
               <div className="flex items-center">
-                <div className={styles.chatLogo}>C</div>
+                <Avatar initials="C" size="sm" color="#FFFFFF" className="mr-2 text-[#4361EE]" />
                 <span className="font-medium text-sm">armincx AI Agent</span>
               </div>
-              <div className="flex items-center relative" ref={dropdownRef}>
-                <button
-                  onClick={toggleDropdown}
-                  className="text-white hover:text-gray-300 cursor-pointer p-1 rounded transition-colors"
-                >
-                  <MoreVertical size={18} />
-                </button>
 
-                {/* Dropdown menu */}
-                <AnimatePresence>
-                  {showDropdown && (
-                    <motion.div
-                      initial={animations.dropdown.initial}
-                      animate={animations.dropdown.animate}
-                      exit={animations.dropdown.exit}
-                      transition={animations.dropdown.transition}
-                      className="absolute top-full right-0 mt-1 w-48 bg-white rounded-md shadow-lg z-10 overflow-hidden"
-                    >
-                      <div className="py-1">
-                        <button
-                          onClick={handleStartNewChat}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        >
-                          <PlusCircle size={16} className="mr-2" />
-                          Start a new chat
-                        </button>
-                        <button
-                          onClick={handleEndChat}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        >
-                          <LogOut size={16} className="mr-2" />
-                          End chat
-                        </button>
-                        <button
-                          onClick={handleViewRecentChats}
-                          className="flex items-center w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 cursor-pointer"
-                        >
-                          <History size={16} className="mr-2" />
-                          View recent chats
-                        </button>
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+              <Dropdown
+                trigger={
+                  <IconButton
+                    icon={<MoreVertical size={18} />}
+                    variant="ghost"
+                    size="sm"
+                    className="text-white hover:text-gray-300"
+                    ariaLabel="Chat options"
+                  />
+                }
+                items={menuItems}
+                position="bottom-right"
+                onSelect={handleMenuAction}
+              />
             </div>
 
             {/* Chat body */}
@@ -173,7 +165,9 @@ export function ChatWidget() {
               <div className={`${styles.messagesContainer} ${getMessagesContainerClass(messages)}`}>
                 {messages.map(message => (
                   <div key={message.id} className={message.sender === "user" ? styles.userMessage : styles.botMessage}>
-                    {message.sender === "bot" && <div className={styles.botAvatar}>C</div>}
+                    {message.sender === "bot" && (
+                      <Avatar initials="C" size="xs" color="#FFFFFF" className="mr-2 text-[#4361EE] shadow-sm" />
+                    )}
                     <div className={message.sender === "user" ? styles.userMessageBubble : styles.botMessageBubble}>
                       {message.content}
                     </div>
@@ -202,17 +196,23 @@ export function ChatWidget() {
               {/* Chat input */}
               <div className={styles.chatInputContainer}>
                 <form onSubmit={handleSend} className={styles.chatInputForm}>
-                  <input
-                    type="text"
+                  <TextField
                     placeholder="Message..."
-                    className={styles.chatInput}
                     value={inputValue}
                     onChange={e => setInputValue(e.target.value)}
+                    rightIcon={
+                      <IconButton
+                        icon={<Send size={16} />}
+                        type="submit"
+                        variant={inputValue.trim() ? "primary" : "secondary"}
+                        size="sm"
+                        rounded
+                        disabled={!inputValue.trim()}
+                        ariaLabel="Send message"
+                      />
+                    }
+                    className="flex-grow"
                   />
-                  <Button type="submit" size="icon" className={styles.sendButton} disabled={!inputValue.trim()}>
-                    <Send size={14} className="sm:hidden" />
-                    <Send size={16} className="hidden sm:block" />
-                  </Button>
                 </form>
 
                 {/* Privacy notice */}

@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Gamepad2, BarChart2, Activity, Database, Workflow } from "lucide-react";
+import { Tabs, TabPanel } from "../../uikit/Tabs/Tabs";
 import analyticsBg from "../../assets/images/mfU1wWLPqiuIzGvQIpYIatOw.avif";
 import dashboardBg from "../../assets/images/5VUhwLllRxiNKV9aWLUxK7Zprgc.avif";
 

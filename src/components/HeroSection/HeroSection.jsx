@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { Button } from "../../uikit/Button/Button";
+import IconButton from "../../uikit/IconButton/IconButton";
 import videoSrc from "../../assets/videos/invideo-ai-720 Revolutionize Your E-Commerce Support wi 2025-05-23.mp4";
 import { useState, useRef } from "react";
 import { Play, Pause } from "lucide-react";
@@ -138,14 +139,18 @@ export function HeroSection() {
               />
               <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/10 to-[#1FB7DD]/10"></div>
 
-              {/* Video controls */}
-              {/* Video controls */}
-              <button
-                className="absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
-                onClick={togglePlay}
-              >
-                {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-              </button>
+              {/* Video controls using IconButton */}
+              <div className="absolute bottom-4 left-4">
+                <IconButton
+                  icon={isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                  onClick={togglePlay}
+                  variant="ghost"
+                  size="lg"
+                  rounded
+                  className="bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
+                  ariaLabel={isPlaying ? "Pause video" : "Play video"}
+                />
+              </div>
             </div>
           </motion.div>
         </div>

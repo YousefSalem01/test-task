@@ -1,7 +1,46 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Play, Pause, ChevronDown } from "lucide-react";
+import IconButton from "../../uikit/IconButton/IconButton";
 import videoSrc from "../../assets/videos/hero.webm";
+
+// Custom styles for better mobile scrolling
+const customStyles = `
+  .mobile-scroll-section {
+    overflow-x: hidden;
+  }
+  
+  .scroll-mt-demo {
+    scroll-margin-top: 80px;
+  }
+  
+  .mobile-highlight {
+    position: relative;
+  }
+  
+  .mobile-highlight::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 4px;
+    background: linear-gradient(to bottom, #4361EE, #1FB7DD);
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+  }
+  
+  @media (max-width: 1023px) {
+    .order-1 {
+      order: 1;
+    }
+    
+    .order-2 {
+      order: 2;
+      margin-top: 8px;
+    }
+  }
+`;
 
 const steps = [
   {
@@ -84,6 +123,9 @@ export function HowItWorks() {
 
   return (
     <section className="py-16 bg-white mobile-scroll-section">
+      {/* Custom styles */}
+      <style dangerouslySetInnerHTML={{ __html: customStyles }} />
+
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold text-[#313131]">Say Goodbye to Gorgias, Zendesk and Others</h2>
@@ -178,12 +220,17 @@ export function HowItWorks() {
             <div className="absolute inset-0 bg-gradient-to-b from-[#4361EE]/20 to-[#1FB7DD]/30"></div>
 
             {/* Video controls */}
-            <button
-              className="absolute bottom-4 left-4 h-12 w-12 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center text-white cursor-pointer hover:bg-white/30 transition-colors"
-              onClick={togglePlay}
-            >
-              {isPlaying ? <Pause size={20} /> : <Play size={20} />}
-            </button>
+            <div className="absolute bottom-4 left-4">
+              <IconButton
+                icon={isPlaying ? <Pause size={20} /> : <Play size={20} />}
+                onClick={togglePlay}
+                variant="ghost"
+                size="lg"
+                rounded
+                className="bg-white/20 backdrop-blur-sm text-white hover:bg-white/30"
+                ariaLabel={isPlaying ? "Pause video" : "Play video"}
+              />
+            </div>
           </div>
         </div>
       </div>

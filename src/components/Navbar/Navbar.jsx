@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../../uikit/Button/Button";
+import IconButton from "../../uikit/IconButton/IconButton";
+import Dropdown from "../../uikit/Dropdown/Dropdown";
 import { Link } from "react-router-dom";
-import { Menu, X } from "lucide-react";
+import { Menu, X, ChevronDown } from "lucide-react";
 import arminCxLogo from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
 
 export function Navbar() {
@@ -20,11 +22,19 @@ export function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Animation variants
-  const mobileMenuVariants = {
-    hidden: { opacity: 0, height: 0, y: -20 },
-    visible: { opacity: 1, height: "auto", y: 0, transition: { duration: 0.3, ease: "easeOut" } },
-    exit: { opacity: 0, height: 0, y: -20, transition: { duration: 0.2, ease: "easeIn" } }
+  // Mobile menu items
+  const menuItems = [
+    { id: "whatsapp", label: "WhatsApp" },
+    { id: "email", label: "Email" },
+    { id: "phone", label: "Phone" },
+    { id: "social", label: "Social Media" },
+    { id: "features", label: "Features" }
+  ];
+
+  const handleMenuSelect = item => {
+    // Handle menu item selection
+    console.log(`Selected: ${item.label}`);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -63,7 +73,7 @@ export function Navbar() {
 
         <div className="flex items-center space-x-3">
           <div className="hidden md:block">
-            <Button className="rounded-full text-sm ">Book a Demo</Button>
+            <Button className="rounded-full text-sm">Book a Demo</Button>
           </div>
           <div className="hidden md:block">
             <Link to="/signin" className="text-[#6e7687] hover:text-[#313131] text-sm font-medium">
@@ -71,68 +81,40 @@ export function Navbar() {
             </Link>
           </div>
 
-          {/* Mobile menu toggle - more interactive */}
-          <button
-            className="flex md:hidden text-[#4361EE] p-1 rounded-full hover:bg-[#4361EE]/10 transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          >
-            <motion.div
-              initial="rest"
-              animate={isMenuOpen ? "open" : "rest"}
-              variants={{
-                rest: { rotate: 0 },
-                open: { rotate: 180 }
-              }}
-              transition={{ duration: 0.2 }}
-            >
-              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
-            </motion.div>
-          </button>
+          {/* Mobile menu toggle using IconButton */}
+          <div className="md:hidden">
+            <IconButton
+              icon={isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              variant="ghost"
+              className="text-[#4361EE] hover:bg-[#4361EE]/10"
+              ariaLabel={isMenuOpen ? "Close menu" : "Open menu"}
+            />
+          </div>
         </div>
       </div>
 
-      {/* Mobile menu - animated */}
+      {/* Mobile menu using Dropdown */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             className="absolute top-full left-0 right-0 bg-white shadow-lg rounded-b-2xl z-40 py-4 px-6 md:hidden mt-2 mx-4 border border-gray-100"
-            variants={mobileMenuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="exit"
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            transition={{ duration: 0.3 }}
           >
             <nav className="flex flex-col space-y-3 mb-6">
-              <a
-                href="#"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
-              >
-                WhatsApp
-              </a>
-              <a
-                href="#"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
-              >
-                Email
-              </a>
-              <a
-                href="#"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
-              >
-                Phone
-              </a>
-              <a
-                href="#"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
-              >
-                Social Media
-              </a>
-              <a
-                href="#"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
-              >
-                Features
-              </a>
+              {menuItems.map(item => (
+                <a
+                  key={item.id}
+                  href="#"
+                  className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
+                  onClick={() => handleMenuSelect(item)}
+                >
+                  {item.label}
+                </a>
+              ))}
             </nav>
             <div className="flex flex-col space-y-4">
               <Button className="rounded-full w-full">Book a Demo</Button>

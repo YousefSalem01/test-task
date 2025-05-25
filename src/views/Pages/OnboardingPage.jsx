@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "../../uikit/Button/Button";
+import TextField from "../../uikit/TextField/TextField";
+import Avatar from "../../uikit/Avatar/Avatar";
 import { Check, Mail, Globe, Instagram, Facebook, Phone, MessageSquare } from "lucide-react";
 import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 import logoSrc from "../../assets/logos/armin-cx-logo-blue.0885e649.svg";
@@ -171,8 +173,8 @@ export function OnboardingPage() {
 
                 {step.question && <h2 className="text-lg font-medium text-gray-800 mb-4">{step.question}</h2>}
 
-                {/* Options for step 1 and 2 */}
-                {(currentStep === 1 || currentStep === 2) && step.optionType === "radio" && (
+                {/* Options for step 1 */}
+                {currentStep === 1 && step.optionType === "radio" && (
                   <div className="grid grid-cols-2 gap-3 mb-6">
                     {step.options.map(option => (
                       <div
@@ -202,6 +204,7 @@ export function OnboardingPage() {
                   </div>
                 )}
 
+                {/* Options for step 2 */}
                 {currentStep === 2 && (
                   <>
                     <div className="grid grid-cols-2 gap-3 mb-8">
@@ -263,21 +266,17 @@ export function OnboardingPage() {
                   </>
                 )}
 
-                {/* Input for step 3 */}
+                {/* Step 3 - using TextField */}
                 {currentStep === 3 && (
                   <div className="mb-6">
-                    <label htmlFor="inboxName" className="block text-sm font-medium text-gray-700 mb-1">
-                      {step.inputLabel} <span className="text-red-500">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      id="inboxName"
+                    <TextField
+                      label={step.inputLabel}
+                      placeholder={step.inputPlaceholder}
                       value={selections.inboxName}
                       onChange={handleInputChange}
-                      placeholder={step.inputPlaceholder}
-                      className="block w-full px-4 py-2.5 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-[#4361EE] focus:border-transparent"
+                      helperText={step.inputHelp}
+                      required
                     />
-                    <p className="mt-1 text-sm text-gray-500">{step.inputHelp}</p>
                   </div>
                 )}
               </motion.div>
@@ -397,10 +396,8 @@ export function OnboardingPage() {
                       <div className="p-4">
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center">
-                            <div className="w-10 h-10 rounded-full bg-[#4361EE]/10 flex items-center justify-center text-[#4361EE]">
-                              <Check size={18} />
-                            </div>
-                            <div className="ml-3">
+                            <Avatar icon={<Check size={18} />} size="sm" color="#4361EE" className="mr-3" />
+                            <div>
                               <div className="text-sm font-medium text-gray-900">Engineering</div>
                               <div className="text-xs text-gray-500">3 members</div>
                             </div>
@@ -411,12 +408,8 @@ export function OnboardingPage() {
                         <div className="border-t border-gray-100 pt-4">
                           <div className="bg-gray-50 rounded-lg p-3 mb-3">
                             <div className="flex items-start">
-                              <div className="flex-shrink-0">
-                                <div className="w-8 h-8 rounded-full bg-blue-500 flex items-center justify-center text-white text-xs font-medium">
-                                  JD
-                                </div>
-                              </div>
-                              <div className="ml-3">
+                              <Avatar initials="JD" size="xs" color="#4361EE" className="mr-3 text-white" />
+                              <div>
                                 <div className="text-sm font-medium text-gray-900">John Doe</div>
                                 <div className="text-xs text-gray-500 mb-1">via Email • 5 min ago</div>
                                 <div className="text-sm text-gray-700">
@@ -428,12 +421,8 @@ export function OnboardingPage() {
 
                           <div className="bg-gray-50 rounded-lg p-3">
                             <div className="flex items-start">
-                              <div className="flex-shrink-0">
-                                <div className="w-8 h-8 rounded-full bg-green-500 flex items-center justify-center text-white text-xs font-medium">
-                                  AS
-                                </div>
-                              </div>
-                              <div className="ml-3">
+                              <Avatar initials="AS" size="xs" color="#10B981" className="mr-3 text-white" />
+                              <div>
                                 <div className="text-sm font-medium text-gray-900">Alice Smith</div>
                                 <div className="text-xs text-gray-500 mb-1">via WhatsApp • 2 min ago</div>
                                 <div className="text-sm text-gray-700">When will the new feature be available?</div>
