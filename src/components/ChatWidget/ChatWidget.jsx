@@ -116,15 +116,21 @@ export function ChatWidget() {
   return (
     <div className="fixed bottom-6 right-6 z-50">
       {/* Chat button */}
-      <IconButton
-        icon={isOpen ? <X size={24} /> : <MessageSquare size={24} />}
-        onClick={toggleChat}
-        variant="primary"
-        size="lg"
-        rounded
-        className="shadow-lg"
-        ariaLabel={isOpen ? "Close chat" : "Open chat"}
-      />
+      <motion.div
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        transition={{ type: "spring", stiffness: 400, damping: 17 }}
+      >
+        <IconButton
+          icon={isOpen ? <X size={24} /> : <MessageSquare size={24} />}
+          onClick={toggleChat}
+          variant="primary"
+          size="lg"
+          rounded
+          className="shadow-lg"
+          ariaLabel={isOpen ? "Close chat" : "Open chat"}
+        />
+      </motion.div>
 
       {/* Chat window */}
       <AnimatePresence>
