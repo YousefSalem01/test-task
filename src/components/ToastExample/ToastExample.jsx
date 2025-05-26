@@ -38,7 +38,7 @@ export function ToastExample() {
               icon: "👋",
               style: {
                 borderRadius: "10px",
-                background: "#4361EE",
+                background: "var(--color-blue)",
                 color: "#fff"
               }
             })

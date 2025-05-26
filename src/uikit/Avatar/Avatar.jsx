@@ -6,7 +6,7 @@ export default function Avatar({
   initials,
   icon,
   size = "md",
-  color = "#4361EE",
+  color = "var(--color-blue)", 
   shape = "circle",
   className = ""
 }) {

@@ -29,7 +29,7 @@ export function HeroSection() {
       {/* Animated background elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <motion.div
-          className="absolute top-20 left-10 w-64 h-64 rounded-full bg-[#4361EE]/5"
+          className="absolute top-20 left-10 w-64 h-64 rounded-full bg-blue/5"
           animate={{
             x: [0, 50, 0],
             y: [0, 30, 0]
@@ -41,7 +41,7 @@ export function HeroSection() {
           }}
         />
         <motion.div
-          className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-[#1FB7DD]/5"
+          className="absolute bottom-20 right-10 w-80 h-80 rounded-full bg-light-blue/5"    
           animate={{
             x: [0, -40, 0],
             y: [0, -40, 0]
@@ -127,7 +127,7 @@ export function HeroSection() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="relative rounded-xl overflow-hidden shadow-2xl"
           >
-            <div className="aspect-video bg-gradient-to-br from-[#4361EE] to-[#1FB7DD] relative overflow-hidden">
+            <div className="aspect-video bg-gradient-to-br from-blue to-light-blue relative overflow-hidden">   
               <video
                 ref={videoRef}
                 className="w-full h-full object-cover"
@@ -137,7 +137,7 @@ export function HeroSection() {
                 playsInline
                 src={videoSrc}
               />
-              <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/10 to-[#1FB7DD]/10"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-blue/10 to-light-blue/10"></div>
 
               {/* Video controls using IconButton */}
               <div className="absolute bottom-4 left-4">

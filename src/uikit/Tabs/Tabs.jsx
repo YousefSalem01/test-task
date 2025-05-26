@@ -7,19 +7,19 @@ export function Tabs({ tabs, activeTab, onChange, variant = "underline", classNa
     underline: {
       container: "flex border-b border-gray-200",
       tab: "px-4 py-2 text-sm font-medium",
-      active: "text-[#4361EE] border-b-2 border-[#4361EE]",
+      active: "text-blue border-b-2 border-blue", 
       inactive: "text-gray-500 hover:text-gray-700 hover:border-gray-300 border-b-2 border-transparent"
     },
     pills: {
       container: "flex space-x-1",
       tab: "px-3 py-2 text-sm font-medium rounded-full",
-      active: "bg-[#4361EE] text-white",
+      active: "bg-blue text-white",
       inactive: "text-gray-600 hover:text-gray-900 hover:bg-gray-100 bg-gray-50"
     },
     boxed: {
       container: "flex",
       tab: "px-4 py-2 text-sm font-medium border-t border-l border-r",
-      active: "bg-white text-[#4361EE] border-gray-200 rounded-t-lg",
+      active: "bg-white text-blue border-gray-200 rounded-t-lg",
       inactive: "bg-gray-50 text-gray-500 hover:text-gray-700 border-transparent"
     }
   };
@@ -46,7 +46,7 @@ export function Tabs({ tabs, activeTab, onChange, variant = "underline", classNa
 
             {variant === "underline" && activeTab === tab.id && (
               <motion.div
-                className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#4361EE]"
+                className="absolute bottom-0 left-0 right-0 h-0.5 bg-blue"
                 layoutId="underline"
                 initial={false}
               />

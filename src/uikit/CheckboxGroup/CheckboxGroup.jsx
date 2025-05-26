@@ -18,7 +18,7 @@ export function RadioGroup({ name, options, value, onChange, layout = "vertical"
               value={option.value}
               checked={isChecked}
               onChange={() => onChange(option.value)}
-              className="h-4 w-4 text-[#4361EE] border-gray-300 focus:ring-[#4361EE]"
+              className="h-4 w-4 text-blue border-gray-300 focus:ring-blue" 
             />
             <label htmlFor={id} className="ml-2 text-sm font-medium text-gray-700">
               {option.label}
@@ -56,7 +56,7 @@ export function CheckboxGroup({ name, options, values = [], onChange, layout = "
               value={option.value}
               checked={isChecked}
               onChange={() => handleChange(option.value)}
-              className="h-4 w-4 rounded text-[#4361EE] border-gray-300 focus:ring-[#4361EE]"
+              className="h-4 w-4 rounded text-blue border-gray-300 focus:ring-blue"
             />
             <label htmlFor={id} className="ml-2 text-sm font-medium text-gray-700">
               {option.label}

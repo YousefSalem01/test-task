@@ -13,8 +13,8 @@ export default function IconButton({
 }) {
   // Variant styles
   const variantStyles = {
-    default: "bg-[#4361EE] text-white hover:bg-[#4361EE]/90",
-    primary: "bg-[#4361EE] text-white hover:bg-[#4361EE]/90",
+    default: "bg-blue text-white hover:bg-blue/90", 
+    primary: "bg-blue text-white hover:bg-blue/90",
     secondary: "bg-gray-100 text-gray-800 hover:bg-gray-200",
     ghost: "bg-transparent text-gray-700 hover:bg-gray-100",
     outline: "border border-gray-300 bg-white hover:bg-gray-50 text-gray-700"

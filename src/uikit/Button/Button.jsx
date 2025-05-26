@@ -8,7 +8,7 @@ const baseStyles =
 
 // Style variants
 const variantStyles = {
-  default: "bg-[#4361EE] text-white hover:bg-[#4361EE]/90",
+  default: "bg-blue text-white hover:bg-blue/90", 
   destructive: "bg-red-500 text-slate-50 hover:bg-red-500/90",
   outline: "border border-slate-200 bg-white hover:bg-slate-100 hover:text-slate-900",
   secondary: "bg-slate-100 text-slate-900 hover:bg-slate-100/80",

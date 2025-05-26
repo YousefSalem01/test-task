@@ -48,7 +48,7 @@ function Card({
 
   return (
     <motion.div
-      className={`bg-white p-6 rounded-xl shadow-sm border border-transparent hover:border-[#4361EE]/10 relative ${className}`}
+      className={`bg-white p-6 rounded-xl shadow-sm border border-transparent hover:border-blue/10 relative ${className}`} 
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}

@@ -1,68 +1,105 @@
 @import "@fontsource/lato";
 @import "tailwindcss";
+/*use @plugin for having plugins in the new tailwind v4  */
+/*use prefix() for adding a prefix for class */
 
 @layer base {
-	body {
-		margin: 0;
-		background-color: rgba(250, 251, 251, 1);
-		font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-		-webkit-font-smoothing: antialiased;
-		-moz-osx-font-smoothing: grayscale;
-	}
+  body {
+    margin: 0;
+    background-color: rgba(250, 251, 251, 1);
+    font-family:
+      "Inter",
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      "Helvetica Neue",
+      Arial,
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-	html {
-		scroll-behavior: smooth;
-	}
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@theme {
+  /********* screens **********/
+  --breakpoint-*: initial;
+  --breakpoint-sm: 480px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 976px;
+  /* ************************ */
+
+  /********* colors **********/
+  --color-blue: #4361ee;
+  --color-black: #313131;
+  --color-gray: #6e7687;
+  --color-light-blue: #1FB7DD;
+  --color-yellow: #FFBE0B;
+  --color-orange: #FF6B35;
+  --color-purple: #9D4EDD;
+  
+
+  /********* Font weight **********/
+  --font-weight-thin: 100;
+  --font-weight-light: 300;
+  --font-weight-normal: 400;
+  --font-weight-bold: 700;
+  --font-weight-extrabold: 800;
+  /* **************************** */
 }
 
 /* Custom animation - slow spin for decorative elements */
 @keyframes spin-slow {
-	from {
-		transform: rotate(0deg);
-	}
-	to {
-		transform: rotate(360deg);
-	}
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 .animate-spin-slow {
-	animation: spin-slow 20s linear infinite;
+  animation: spin-slow 20s linear infinite;
 }
 
 /* Mobile scrolling and layout utilities */
 @media (max-width: 1023px) {
-	.mobile-scroll-container {
-		scroll-snap-type: y mandatory;
-		height: 100vh;
-		overflow-y: scroll;
-	}
+  .mobile-scroll-container {
+    scroll-snap-type: y mandatory;
+    height: 100vh;
+    overflow-y: scroll;
+  }
 
-	.mobile-scroll-section {
-		scroll-snap-align: start;
-		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-	}
+  .mobile-scroll-section {
+    scroll-snap-align: start;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 }
 
 /* Custom snap container for mobile step navigation */
 .scroll-mt-demo {
-	scroll-margin-top: 100px;
+  scroll-margin-top: 100px;
 }
 
 /* Custom highlight animation for mobile view */
 @keyframes pulse-highlight {
-	0% {
-		box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
-	}
-	70% {
-		box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
-	}
-	100% {
-		box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
-	}
+  0% {
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(67, 97, 238, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(67, 97, 238, 0);
+  }
 }
 
 .mobile-highlight {
-	animation: pulse-highlight 2s infinite;
+  animation: pulse-highlight 2s infinite;
 }

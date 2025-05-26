@@ -30,7 +30,7 @@ export default function TextField({
 
   // Base input classes
   const baseInputClasses = `
-    block bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-[#4361EE] focus:border-transparent
+    block bg-white rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue focus:border-transparent *:
     transition-colors w-full disabled:bg-gray-100 disabled:cursor-not-allowed
     ${error ? "border-red-500 text-red-500 focus:ring-red-500" : "border-gray-300 text-gray-900"}
     ${leftIcon ? "pl-9" : ""}

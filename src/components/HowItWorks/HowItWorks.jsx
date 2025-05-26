@@ -25,7 +25,7 @@ const customStyles = `
     top: 0;
     height: 100%;
     width: 4px;
-    background: linear-gradient(to bottom, #4361EE, #1FB7DD);
+    background: linear-gradient(to bottom, var(--color-blue), var(--color-light-blue)); 
     border-top-left-radius: 0.75rem;
     border-bottom-left-radius: 0.75rem;
   }
@@ -150,12 +150,12 @@ export function HowItWorks() {
                 whileHover={{ scale: activeStep === step.id ? 1 : 1.02 }}
               >
                 <div className="flex items-start gap-4">
-                  <div className={`text-lg font-medium ${activeStep === step.id ? "text-[#4361EE]" : "text-gray-400"}`}>
+                    <div className={`text-lg font-medium ${activeStep === step.id ? "text-blue" : "text-gray-400"}`}> 
                     {step.number}.
                   </div>
                   <div className="flex-1">
                     <h3
-                      className={`text-lg font-medium ${activeStep === step.id ? "text-[#313131]" : "text-gray-400"}`}
+                      className={`text-lg font-medium ${activeStep === step.id ? "text-black" : "text-gray-400"}`} 
                     >
                       {step.title}
                     </h3>
@@ -167,7 +167,7 @@ export function HowItWorks() {
                             animate={{ opacity: 1, height: "auto" }}
                             exit={{ opacity: 0, height: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="mt-2 text-[#6e7687]"
+                            className="mt-2 text-gray" 
                           >
                             {step.description}
                           </motion.p>
@@ -190,7 +190,7 @@ export function HowItWorks() {
             {/* Mobile scroll indicator */}
             <div className="flex justify-center lg:hidden mt-4">
               <motion.div
-                className="flex items-center text-[#4361EE] text-sm"
+                className="flex items-center text-blue text-sm" 
                 initial={{ y: 0 }}
                 animate={{ y: [0, 5, 0] }}
                 transition={{ repeat: Infinity, duration: 1.5 }}
@@ -205,7 +205,7 @@ export function HowItWorks() {
           {/* Demo/Video card - Same for both layouts but positioned differently */}
           <div
             ref={demoCardRef}
-            className="relative rounded-xl overflow-hidden bg-gradient-to-br from-[#4361EE] to-[#1FB7DD] h-[500px] order-2 scroll-mt-demo"
+            className="relative rounded-xl overflow-hidden bg-gradient-to-br from-blue to-light-blue h-[500px] order-2 scroll-mt-demo" 
           >
             {/* Video background */}
             <video
@@ -217,7 +217,7 @@ export function HowItWorks() {
               playsInline
               src={videoSrc}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#4361EE]/20 to-[#1FB7DD]/30"></div>
+            <div className="absolute inset-0 bg-gradient-to-b from-blue/20 to-light-blue/30"></div>
 
             {/* Video controls */}
             <div className="absolute bottom-4 left-4">

@@ -15,7 +15,7 @@ function FeatureCard({ feature, index }) {
       onMouseLeave={() => setIsHovered(false)}
     >
       <motion.div
-        className="h-12 w-12 rounded-lg bg-[#4361EE]/10 flex items-center justify-center text-[#4361EE] mb-4"
+        className="h-12 w-12 rounded-lg bg-blue/10 flex items-center justify-center text-blue mb-4"
         animate={{
           scale: isHovered ? 1.1 : 1,
           rotate: isHovered ? 5 : 0

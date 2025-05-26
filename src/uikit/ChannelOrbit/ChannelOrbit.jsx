@@ -4,7 +4,7 @@ import { Mail, Globe, Instagram, Facebook, Phone, MessageSquare } from "lucide-r
 import { FaWhatsapp, FaTiktok } from "react-icons/fa";
 
 const defaultChannels = [
-  { name: "Email", icon: <Mail className="h-full w-full" />, color: "#4361EE" },
+  { name: "Email", icon: <Mail className="h-full w-full" />, color: "var(--color-blue)" },
   { name: "Web", icon: <Globe className="h-full w-full" />, color: "#4169e1" },
   { name: "WhatsApp", icon: <FaWhatsapp className="h-full w-full" />, color: "#25D366" },
   { name: "Instagram", icon: <Instagram className="h-full w-full" />, color: "#E1306C" },
@@ -132,7 +132,7 @@ export function ChannelOrbit({
       })}
 
       <div
-        className="absolute rounded-full bg-[#4361EE] flex items-center justify-center text-white z-20"
+        className="absolute rounded-full bg-blue flex items-center justify-center text-white z-20"
         style={{
           width: `${responsiveCenterSize}px`,
           height: `${responsiveCenterSize}px`
@@ -146,7 +146,7 @@ export function ChannelOrbit({
         {centerContent || (
           <div className="absolute flex items-center justify-center">
             <span className="text-sm sm:text-base font-bold text-white">armin</span>
-            <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-white to-[#1FB7DD] bg-clip-text text-transparent">
+            <span className="text-xs sm:text-sm font-bold bg-gradient-to-r from-white to-light-blue bg-clip-text text-transparent"> 
               cx
             </span>
           </div>

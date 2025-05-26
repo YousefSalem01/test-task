@@ -145,7 +145,7 @@ export function ChatWidget() {
             {/* Chat header */}
             <div className={styles.chatHeader}>
               <div className="flex items-center">
-                <Avatar initials="C" size="sm" color="#FFFFFF" className="mr-2 text-[#4361EE]" />
+                <Avatar initials="C" size="sm" color="#FFFFFF" className="mr-2 text-blue" />
                 <span className="font-medium text-sm">armincx AI Agent</span>
               </div>
 
@@ -172,7 +172,7 @@ export function ChatWidget() {
                 {messages.map(message => (
                   <div key={message.id} className={message.sender === "user" ? styles.userMessage : styles.botMessage}>
                     {message.sender === "bot" && (
-                      <Avatar initials="C" size="xs" color="#FFFFFF" className="mr-2 text-[#4361EE] shadow-sm" />
+                      <Avatar initials="C" size="xs" color="#FFFFFF" className="mr-2 text-blue shadow-sm" />
                     )}
                     <div className={message.sender === "user" ? styles.userMessageBubble : styles.botMessageBubble}>
                       {message.content}

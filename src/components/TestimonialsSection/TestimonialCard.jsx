@@ -13,7 +13,7 @@ function TestimonialCard({ testimonial, index }) {
     >
       <div className="mb-4">
         <div className="flex items-center mb-3">
-          <Avatar initials={testimonial.name.charAt(0)} color="#4361EE" size="md" className="text-white" />
+          <Avatar initials={testimonial.name.charAt(0)} color="#4361EE" size="md" className="text-white" /> 
           <div className="ml-3">
             <h4 className="font-semibold text-[#313131]">{testimonial.name}</h4>
             <p className="text-sm text-[#6e7687]">{testimonial.company}</p>

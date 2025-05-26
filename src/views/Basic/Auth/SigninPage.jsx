@@ -44,7 +44,7 @@ export function SignInPage() {
           src={videoSrc}
           poster="/placeholder.svg?height=1080&width=1920"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/80 to-[#1FB7DD]/80 mix-blend-multiply" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue/80 to-light-blue/80 mix-blend-multiply" />
       </div>
 
       {/* Right side - Sign in form */}
@@ -57,7 +57,7 @@ export function SignInPage() {
             <h1 className="text-2xl font-bold text-gray-900 mb-2">Welcome to armincx</h1>
             <p className="text-gray-600">
               Don't have an account?{" "}
-              <Link to="/signup" className="text-[#4361EE] hover:underline font-medium">
+              <Link to="/signup" className="text-blue hover:underline font-medium">
                 Sign up
               </Link>
             </p>
@@ -144,7 +144,7 @@ export function SignInPage() {
                     id="remember-me"
                     name="remember-me"
                     type="checkbox"
-                    className="h-4 w-4 text-[#4361EE] focus:ring-[#4361EE] border-gray-300 rounded"
+                    className="h-4 w-4 text-blue focus:ring-blue border-gray-300 rounded"
                   />
                   <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-700">
                     Remember me
@@ -152,7 +152,7 @@ export function SignInPage() {
                 </div>
 
                 <div className="text-sm">
-                  <a href="#" className="font-medium text-[#4361EE] hover:underline">
+                  <a href="#" className="font-medium text-blue hover:underline">
                     Forgot your password?
                   </a>
                 </div>
@@ -166,11 +166,11 @@ export function SignInPage() {
 
           <div className="mt-6 text-center text-xs text-gray-500">
             By signing in, you agree to our{" "}
-            <a href="#" className="text-[#4361EE] hover:underline">
+            <a href="#" className="text-blue hover:underline">
               Terms of Service
             </a>{" "}
             and{" "}
-            <a href="#" className="text-[#4361EE] hover:underline">
+            <a href="#" className="text-blue hover:underline">
               Privacy Policy
             </a>
           </div>

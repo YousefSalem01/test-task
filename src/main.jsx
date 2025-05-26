@@ -21,7 +21,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         },
         success: {
           iconTheme: {
-            primary: "#4361EE",
+            primary: "var(--color-blue)", 
             secondary: "#FFFFFF"
           }
         }

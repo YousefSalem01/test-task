@@ -3,7 +3,7 @@ import React from "react";
 export default function Badge({ content, variant = "primary", size = "md", dot = false, className = "" }) {
   // Variant styles (colors)
   const variantStyles = {
-    primary: "bg-[#4361EE] text-white",
+    primary: "bg-blue text-white", 
     secondary: "bg-gray-200 text-gray-800",
     success: "bg-green-500 text-white",
     warning: "bg-amber-500 text-white",

@@ -87,7 +87,7 @@ export function Navbar() {
               icon={isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               variant="ghost"
-              className="text-[#4361EE] hover:bg-[#4361EE]/10"
+              className="text-blue hover:bg-blue/10"
               ariaLabel={isMenuOpen ? "Close menu" : "Open menu"}
             />
           </div>
@@ -109,7 +109,7 @@ export function Navbar() {
                 <a
                   key={item.id}
                   href="#"
-                  className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-[#4361EE]/30"
+                  className="text-gray hover:text-blue text-sm font-medium py-2 transition-colors pl-2 border-l-2 border-transparent hover:border-blue/30"
                   onClick={() => handleMenuSelect(item)}
                 >
                   {item.label}
@@ -120,7 +120,7 @@ export function Navbar() {
               <Button className="rounded-full w-full">Book a Demo</Button>
               <Link
                 to="/signin"
-                className="text-[#6e7687] hover:text-[#4361EE] text-sm font-medium text-center py-2 transition-colors"
+                className="text-gray hover:text-blue text-sm font-medium text-center py-2 transition-colors"
               >
                 Sign In
               </Link>

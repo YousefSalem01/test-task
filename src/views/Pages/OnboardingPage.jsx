@@ -64,7 +64,7 @@ const steps = [
 ];
 
 const channels = [
-  { name: "Email", icon: <Mail className="h-full w-full" />, color: "#4361EE" },
+  { name: "Email", icon: <Mail className="h-full w-full" />, color: "var(--color-blue)" }, 
   { name: "Web", icon: <Globe className="h-full w-full" />, color: "#4169e1" },
   { name: "WhatsApp", icon: <FaWhatsapp className="h-full w-full" />, color: "#25D366" },
   { name: "Instagram", icon: <Instagram className="h-full w-full" />, color: "#E1306C" },
@@ -181,7 +181,7 @@ export function OnboardingPage() {
                         key={option.id}
                         className={`relative rounded-lg border ${
                           selections.team === option.id
-                            ? "border-[#4361EE] bg-[#4361EE]/5"
+                            ? "border-blue bg-blue/5"  
                             : "border-gray-200 hover:border-gray-300"
                         } p-4 cursor-pointer transition-colors`}
                         onClick={() => handleRadioChange(option.id, "team")}
@@ -192,7 +192,7 @@ export function OnboardingPage() {
                               type="radio"
                               checked={selections.team === option.id}
                               onChange={() => handleRadioChange(option.id, "team")}
-                              className="h-4 w-4 text-[#4361EE] border-gray-300 focus:ring-[#4361EE]"
+                              className="h-4 w-4 text-blue border-gray-300 focus:ring-blue"
                             />
                           </div>
                           <div className="ml-3 text-sm">
@@ -213,7 +213,7 @@ export function OnboardingPage() {
                           key={option.id}
                           className={`relative rounded-lg border ${
                             selections.channels.includes(option.id)
-                              ? "border-[#4361EE] bg-[#4361EE]/5"
+                              ? "border-blue bg-blue/5"
                               : "border-gray-200 hover:border-gray-300"
                           } p-4 cursor-pointer transition-colors`}
                           onClick={() => handleCheckboxChange(option.id)}
@@ -224,7 +224,7 @@ export function OnboardingPage() {
                                 type="checkbox"
                                 checked={selections.channels.includes(option.id)}
                                 onChange={() => handleCheckboxChange(option.id)}
-                                className="h-4 w-4 text-[#4361EE] rounded border-gray-300 focus:ring-[#4361EE]"
+                                className="h-4 w-4 text-blue rounded border-gray-300 focus:ring-blue"
                               />
                             </div>
                             <div className="ml-3 text-sm">
@@ -242,7 +242,7 @@ export function OnboardingPage() {
                           key={option.id}
                           className={`relative rounded-lg border ${
                             selections.usingTool === option.id
-                              ? "border-[#4361EE] bg-[#4361EE]/5"
+                              ? "border-blue bg-blue/5"
                               : "border-gray-200 hover:border-gray-300"
                           } p-4 cursor-pointer transition-colors`}
                           onClick={() => handleRadioChange(option.id, "usingTool")}
@@ -253,7 +253,7 @@ export function OnboardingPage() {
                                 type="radio"
                                 checked={selections.usingTool === option.id}
                                 onChange={() => handleRadioChange(option.id, "usingTool")}
-                                className="h-4 w-4 text-[#4361EE] border-gray-300 focus:ring-[#4361EE]"
+                                className="h-4 w-4 text-blue border-gray-300 focus:ring-blue"
                               />
                             </div>
                             <div className="ml-3 text-sm">
@@ -328,20 +328,20 @@ export function OnboardingPage() {
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
                       >
-                        <circle cx="60" cy="40" r="20" fill="#4361EE" />
-                        <circle cx="30" cy="70" r="15" fill="#1FB7DD" />
-                        <circle cx="90" cy="70" r="15" fill="#9D4EDD" />
+                        <circle cx="60" cy="40" r="20" fill="var(--color-blue)" />
+                        <circle cx="30" cy="70" r="15" fill="var(--color-light-blue)" />
+                        <circle cx="90" cy="70" r="15" fill="var(--color-purple)" />
                         <path
                           d="M60 65C71.0457 65 80 73.9543 80 85V100H40V85C40 73.9543 48.9543 65 60 65Z"
-                          fill="#4361EE"
+                          fill="var(--color-blue)"
                         />
                         <path
                           d="M30 90C36.6274 90 42 95.3726 42 102V110H18V102C18 95.3726 23.3726 90 30 90Z"
-                          fill="#1FB7DD"
+                          fill="var(--color-light-blue)"
                         />
                         <path
                           d="M90 90C96.6274 90 102 95.3726 102 102V110H78V102C78 95.3726 83.3726 90 90 90Z"
-                          fill="#9D4EDD"
+                          fill="var(--color-purple)"
                         />
                       </svg>
                     </div>
@@ -366,7 +366,7 @@ export function OnboardingPage() {
                 {step.illustration === "inbox" && (
                   <div className="w-full max-w-md">
                     <div className="bg-white rounded-lg shadow-lg overflow-hidden border border-gray-200">
-                      <div className="bg-[#4361EE] p-4 text-white">
+                      <div className="bg-blue p-4 text-white">
                         <div className="flex items-center">
                           <svg
                             width="24"
@@ -396,7 +396,7 @@ export function OnboardingPage() {
                       <div className="p-4">
                         <div className="flex items-center justify-between mb-4">
                           <div className="flex items-center">
-                            <Avatar icon={<Check size={18} />} size="sm" color="#4361EE" className="mr-3" />
+                            <Avatar icon={<Check size={18} />} size="sm" color="var(--color-blue)" className="mr-3" />
                             <div>
                               <div className="text-sm font-medium text-gray-900">Engineering</div>
                               <div className="text-xs text-gray-500">3 members</div>
@@ -408,7 +408,7 @@ export function OnboardingPage() {
                         <div className="border-t border-gray-100 pt-4">
                           <div className="bg-gray-50 rounded-lg p-3 mb-3">
                             <div className="flex items-start">
-                              <Avatar initials="JD" size="xs" color="#4361EE" className="mr-3 text-white" />
+                              <Avatar initials="JD" size="xs" color="var(--color-blue)" className="mr-3 text-white" />
                               <div>
                                 <div className="text-sm font-medium text-gray-900">John Doe</div>
                                 <div className="text-xs text-gray-500 mb-1">via Email • 5 min ago</div>
@@ -421,7 +421,7 @@ export function OnboardingPage() {
 
                           <div className="bg-gray-50 rounded-lg p-3">
                             <div className="flex items-start">
-                              <Avatar initials="AS" size="xs" color="#10B981" className="mr-3 text-white" />
+                              <Avatar initials="AS" size="xs" color="var(--color-green)" className="mr-3 text-white" />
                               <div>
                                 <div className="text-sm font-medium text-gray-900">Alice Smith</div>
                                 <div className="text-xs text-gray-500 mb-1">via WhatsApp • 2 min ago</div>

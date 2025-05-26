@@ -1,8 +1,8 @@
 // ChatWidget styles for the chat component
 // Main colors
 export const colors = {
-  primary: "#4361EE",
-  primaryHover: "#4361EE/90",
+  primary: "var(--color-blue)",
+  primaryHover: "var(--color-blue)/90",
   white: "#fff",
   black: "#2d2d2d",
   gray: {
@@ -71,7 +71,7 @@ export const styles = {
   chatInputContainer: "border-t border-gray-100 bg-white",
   chatInputForm: "p-3 sm:p-4 flex items-center gap-2 sm:gap-3",
   chatInput:
-    "flex-1 border border-gray-400 rounded-full px-3 sm:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4361EE] focus:border-transparent",
+    "flex-1 border border-gray-400 rounded-full px-3 sm:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-var(--color-blue) focus:border-transparent",
   privacyNotice: "px-3 sm:px-4 pb-2 sm:pb-3 text-[10px] sm:text-xs text-gray-500 text-center",
-  privacyLink: "text-[#4361EE] hover:underline cursor-pointer"
+  privacyLink: "text-blue hover:underline cursor-pointer"
 };

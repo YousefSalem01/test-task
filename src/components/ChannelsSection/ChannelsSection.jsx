@@ -6,7 +6,7 @@ import { ChannelOrbit } from "../../uikit/ChannelOrbit/ChannelOrbit";
 
 // Define the channels for the right side info panel, matching the icons from defaultChannels
 const channels = [
-  { name: "Email", icon: <Mail className="h-full w-full" />, color: "#4361EE" },
+  { name: "Email", icon: <Mail className="h-full w-full" />, color: "var(--color-blue)" },
   { name: "Web", icon: <Globe className="h-full w-full" />, color: "#4169e1" },
   { name: "WhatsApp", icon: <FaWhatsapp className="h-full w-full" />, color: "#25D366" },
   { name: "Instagram", icon: <Instagram className="h-full w-full" />, color: "#E1306C" },

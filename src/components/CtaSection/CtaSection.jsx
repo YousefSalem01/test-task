@@ -2,7 +2,7 @@ import { Button } from "../../uikit/Button/Button";
 
 export function CTASection() {
   return (
-    <section className="py-16 bg-[#4361EE]">
+    <section className="py-16 bg-blue">
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="flex flex-col items-center text-center">
           <h2 className="text-3xl font-bold text-white md:text-4xl">Switch Sides</h2>
@@ -11,7 +11,7 @@ export function CTASection() {
             <Button
               size="lg"
               variant="outline"
-              className="bg-white text-[#4361EE] hover:bg-white/90 hover:text-[#4361EE] border-0 rounded-full"
+              className="bg-white text-blue hover:bg-white/90 hover:text-blue border-0 rounded-full"
             >
               Book a Demo
             </Button>

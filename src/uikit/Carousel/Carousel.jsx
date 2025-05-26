@@ -210,7 +210,7 @@ const CarouselDots = React.forwardRef(({ className, ...props }, ref) => {
       {Array.from({ length: slideCount }).map((_, idx) => (
         <button
           key={idx}
-          className={`w-2 h-2 mx-1 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-[#4361EE] w-6" : "bg-gray-300"}`}
+          className={`w-2 h-2 mx-1 rounded-full transition-all duration-300 ${idx === currentIndex ? "bg-blue w-6" : "bg-gray-300"}`}
           onClick={() => scrollTo(idx)}
           aria-label={`Go to slide ${idx + 1}`}
         />

@@ -12,7 +12,7 @@ const customStyles = `
 	}
 	
 	.indicator-active {
-		background: linear-gradient(to right, #4361EE, #1FB7DD);
+		background: linear-gradient(to right, var(--color-blue), var(--color-light-blue)); 
 	}
 	
 	@media (max-width: 640px) {
@@ -146,7 +146,7 @@ export function PlatformShowcase() {
       <style dangerouslySetInnerHTML={{ __html: customStyles }} />
 
       {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-r from-[#4361EE]/20 via-[#4361EE]/10 to-[#1FB7DD]/20 opacity-80"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-blue/20 via-blue/10 to-light-blue/20 opacity-80"></div> 
 
       {/* Hidden div to preload images */}
       <div className="hidden">
@@ -157,13 +157,13 @@ export function PlatformShowcase() {
 
       <div className="container mx-auto px-4 max-w-6xl relative z-10">
         <div className="text-center mb-8 sm:mb-12">
-          <div className="inline-flex items-center rounded-full bg-[#4361EE]/10 px-3 py-1 text-sm text-white/90 mb-4">
+            <div className="inline-flex items-center rounded-full bg-blue/10 px-3 py-1 text-sm text-white/90 mb-4">
             <span className="mr-2">✨</span>
             <span>Explore</span>
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
-            Discover the <span className="text-[#4361EE]">armin</span>
-            <span className="bg-gradient-to-r from-[#4361EE] to-[#1FB7DD] bg-clip-text text-transparent">cx</span>{" "}
+            Discover the <span className="text-blue">armin</span>
+            <span className="bg-gradient-to-r from-blue to-light-blue bg-clip-text text-transparent">cx</span>{" "}
             platform
           </h2>
           <p className="text-white/80 max-w-2xl mx-auto text-sm sm:text-base">
@@ -184,7 +184,7 @@ export function PlatformShowcase() {
                 onClick={() => handleTabClick(tab.id)}
                 className={`flex items-center px-3 sm:px-5 py-2 rounded-full text-xs sm:text-sm font-medium transition-all whitespace-nowrap ${
                   activeTab === tab.id
-                    ? "bg-white text-[#4361EE] tab-active"
+                    ? "bg-white text-blue tab-active" 
                     : "text-white hover:text-white hover:bg-white/10"
                 }`}
               >
@@ -196,11 +196,11 @@ export function PlatformShowcase() {
         </div>
 
         {/* Image showcase - responsive height and improved mobile display */}
-        <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-2xl overflow-hidden border border-[#4361EE]/20 shadow-2xl bg-black mobile-showcase">
+        <div className="relative h-[250px] sm:h-[350px] md:h-[450px] lg:h-[500px] w-full rounded-2xl overflow-hidden border border-blue/20 shadow-2xl bg-black mobile-showcase">  
           {/* Colored background glow */}
           <div className="absolute inset-0">
-            <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-[#4361EE]/10 to-[#1FB7DD]/10 opacity-100"></div>
-            <div className="absolute -inset-10 bg-[#4361EE]/5 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-[#FF6B35]/5 via-blue/10 to-light-blue/10 opacity-100"></div> 
+            <div className="absolute -inset-10 bg-blue/5 blur-3xl rounded-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2"></div>
           </div>
 
           {/* Browser window frame */}
@@ -208,7 +208,7 @@ export function PlatformShowcase() {
             <div className="flex space-x-1 sm:space-x-2">
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#FF6B35]/80"></div>
               <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#FFBE0B]/80"></div>
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#1FB7DD]/80"></div>
+              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 md:w-3 md:h-3 rounded-full bg-[#1FB7DD]/80"></div>  
             </div>
           </div>
 
