@@ -1,21 +1,21 @@
 // ChatWidget styles for the chat component
 // Main colors
-export const colors = {
-  primary: "var(--color-blue)",
-  primaryHover: "var(--color-blue)/90",
-  white: "#fff",
-  black: "#2d2d2d",
-  gray: {
-    50: "#f9fafb",
-    100: "#f3f4f6",
-    200: "#e5e7eb",
-    300: "#d1d5db",
-    400: "#9ca3af",
-    500: "#6b7280",
-    600: "#4b5563",
-    700: "#374151"
-  }
-};
+// export const colors = {
+//   primary: "#4361EE",
+//   primaryHover: "#4361EE/90",
+//   white: "#fff",
+//   black: "#2d2d2d",
+//   gray: {
+//     50: "#f9fafb",
+//     100: "#f3f4f6",
+//     200: "#e5e7eb",
+//     300: "#d1d5db",
+//     400: "#9ca3af",
+//     500: "#6b7280",
+//     600: "#4b5563",
+//     700: "#374151"
+//   }
+// };
 
 // Animation variants for framer-motion
 export const animations = {
@@ -39,11 +39,11 @@ export const animations = {
 
 // Component styles
 export const styles = {
-  chatButton: `bg-[${colors.primary}] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-[${colors.primaryHover}] transition-colors cursor-pointer`,
+  chatButton: `bg-blue text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg hover:bg-[#4361EE/90] transition-colors cursor-pointer`,
   chatWindow:
     "absolute bottom-20 right-0 w-[350px] sm:w-[380px] max-w-[95vw] bg-white rounded-xl shadow-2xl overflow-hidden border border-gray-200",
-  chatHeader: `bg-[${colors.primary}] text-white p-3 sm:p-4 flex items-center justify-between`,
-  chatLogo: `bg-white text-[${colors.primary}] rounded-full w-8 h-8 flex items-center justify-center mr-2 sm:mr-3 font-bold text-sm`,
+  chatHeader: `bg-blue text-white p-3 sm:p-4 flex items-center justify-between`,
+  chatLogo: `bg-white text-blue rounded-full w-8 h-8 flex items-center justify-center mr-2 sm:mr-3 font-bold text-sm`,
   chatBody: "flex flex-col h-[400px]",
 
   // New styles
@@ -62,7 +62,7 @@ export const styles = {
   // Preserved styles that don't conflict with new ones
   botAvatar:
     "bg-white text-[#2d2d2d] rounded-full w-6 sm:w-7 h-6 sm:h-7 flex items-center justify-center mr-2 flex-shrink-0 font-bold text-xs shadow-sm",
-  userMessageBubble: `rounded-2xl px-3 sm:px-4 py-2 max-w-[80%] text-xs sm:text-sm leading-relaxed cursor-pointer hover:shadow-md transition-shadow bg-[${colors.primary}] text-white rounded-br-md`,
+  userMessageBubble: `rounded-2xl px-3 sm:px-4 py-2 max-w-[80%] text-xs sm:text-sm leading-relaxed cursor-pointer hover:shadow-md transition-shadow bg-blue text-white rounded-br-md`,
   botMessageBubble:
     "rounded-2xl px-3 sm:px-4 py-2 max-w-[80%] text-xs sm:text-sm leading-relaxed cursor-pointer hover:shadow-md transition-shadow bg-white text-gray-800 shadow-sm border border-gray-100 rounded-bl-md",
   quickRepliesContainer: "px-3 sm:px-4 py-2 sm:py-3 bg-white border-t border-gray-100",
@@ -71,7 +71,7 @@ export const styles = {
   chatInputContainer: "border-t border-gray-100 bg-white",
   chatInputForm: "p-3 sm:p-4 flex items-center gap-2 sm:gap-3",
   chatInput:
-    "flex-1 border border-gray-400 rounded-full px-3 sm:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-var(--color-blue) focus:border-transparent",
+    "flex-1 border border-gray-400 rounded-full px-3 sm:px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#4361EE] focus:border-transparent",
   privacyNotice: "px-3 sm:px-4 pb-2 sm:pb-3 text-[10px] sm:text-xs text-gray-500 text-center",
   privacyLink: "text-blue hover:underline cursor-pointer"
 };

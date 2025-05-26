@@ -9,7 +9,7 @@ import IconButton from "../../uikit/IconButton/IconButton";
 
 // Import from extracted files
 import { initialMessages, predefinedQuestions } from "./ChatWidget.data";
-import { colors, animations, styles } from "./ChatWidget.styles";
+import { animations, styles } from "./ChatWidget.styles";
 import {
   formatUserMessage,
   formatBotMessage,
