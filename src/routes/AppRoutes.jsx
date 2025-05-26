@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { HomePage } from "../App";
 import { SignInPage } from "../views/Basic/Auth/SigninPage";
 import { OnboardingPage } from "../views/Pages/OnboardingPage";
 import ZustandDemo from "../views/ZustandDemo";
 import { ToastExample } from "../components/ToastExample/ToastExample";
+import { HomePage } from "../views/Pages/HomePage";
 
 function AppRoutes() {
   return (
